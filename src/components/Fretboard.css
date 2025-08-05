@@ -25,3 +25,10 @@
 .fret-position:hover {
   background-color: #e0e0e0;
 }
+
+.fret-position.clicked {
+  background-color: #4caf50 !important;
+  color: white !important;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}

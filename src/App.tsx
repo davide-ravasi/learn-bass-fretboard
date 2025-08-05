@@ -1,4 +1,5 @@
 import "./App.css";
+import { Fretboard } from "./components/Fretboard";
 import { BASS_NOTES, getRandomNote } from "./data/notes";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <p>Fret: {randomNote.fret}</p>
         <p>Frequency: {randomNote.frequency.toFixed(2)} Hz</p>
       </div>
+      <Fretboard />
     </>
   );
 }
