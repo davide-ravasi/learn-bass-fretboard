@@ -32,3 +32,9 @@
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
 }
+
+.fret-position.correct {
+  background-color: #2196f3 !important;
+  color: white !important;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+}
