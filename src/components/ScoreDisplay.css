@@ -1,0 +1,35 @@
+.score-display {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+  gap: 20px;
+}
+
+.stats p {
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.current-note {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #e8f5e8;
+  border-radius: 6px;
+}
+
+.target-note {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4caf50;
+  margin: 5px 0;
+}
