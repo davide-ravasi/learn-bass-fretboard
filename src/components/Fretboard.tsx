@@ -1,31 +1,35 @@
 import "./Fretboard.css";
 import { generateBassNotes } from "../data/notes";
 import type { Note } from "../types";
-import { useState } from "react";
 
-export const Fretboard = () => {
+export const Fretboard = ({
+  clickedNote,
+  handleNoteClick,
+  currentNote,
+}: {
+  clickedNote: Note | undefined;
+  handleNoteClick: (note: Note) => void;
+  currentNote: Note | null;
+}) => {
   const notes = generateBassNotes();
-  const [clickedNote, setClickedNote] = useState<Note>();
   const { name, string, fret } = clickedNote || {};
-
-  const handleNoteClick = (note: Note) => {
-    console.log(note);
-    setClickedNote(note);
-
-    setTimeout(() => {
-      setClickedNote(undefined);
-    }, 1000);
-  };
 
   return (
     <div className="fretboard">
       {notes.map((note) => {
-        console.log(note);
+        //  console.log(note);
         return (
           <div
             className={`fret-position ${
               name === note.name && fret === note.fret && string === note.string
                 ? "clicked"
+                : ""
+            } ${
+              currentNote &&
+              currentNote.name === note.name &&
+              currentNote.fret === note.fret &&
+              currentNote.string === note.string
+                ? "correct"
                 : ""
             }`}
             key={`${note.string}-${note.fret}`}

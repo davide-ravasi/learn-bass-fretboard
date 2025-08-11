@@ -1,27 +1,54 @@
 import "./App.css";
 import { Fretboard } from "./components/Fretboard";
-import { BASS_NOTES, getRandomNote } from "./data/notes";
 import { ScoreDisplay } from "./components/ScoreDisplay";
+import type { Note } from "./types";
+import { useGameState } from "./hooks/useGameState";
+import { useState } from "react";
 
 function App() {
-  // Get a random note for practice
-  const randomNote = getRandomNote();
-  console.log(randomNote); // { name: "G", string: 3, fret: 5, frequency: 87.31 }
+  const [clickedNote, setClickedNote] = useState<Note>();
+  const { startNewGame, gameState, checkAnswer, generateNewNote } =
+    useGameState();
 
-  // Or get all notes
-  console.log(BASS_NOTES.length); // 52
+  // { name: "G", string: 3, fret: 5, frequency: 87.31 }
+
+  const handleNoteClick = (note: Note) => {
+    setClickedNote(note);
+    const isCorrect = checkAnswer(note);
+
+    if (isCorrect) {
+      console.log("Correct");
+    } else {
+      console.log("Incorrect");
+    }
+
+    setTimeout(() => {
+      //startNewGame();
+      generateNewNote();
+      setClickedNote(undefined);
+    }, 1000);
+  };
+
+  const handleNewGame = () => {
+    startNewGame();
+  };
 
   return (
     <>
       <div>
         <h1>Bass Fretboard App</h1>
-        <p>Random Note: {randomNote.name}</p>
-        <p>String: {randomNote.string}</p>
-        <p>Fret: {randomNote.fret}</p>
-        <p>Frequency: {randomNote.frequency.toFixed(2)} Hz</p>
+        <p>Random Note: {gameState.currentNote?.name}</p>
+        <p>String: {gameState.currentNote?.string}</p>
+        <p>Fret: {gameState.currentNote?.fret}</p>
+        <p>Frequency: {gameState.currentNote?.frequency.toFixed(2)} Hz</p>
+        <button onClick={handleNewGame}>Generate New Note</button>
       </div>
-      <ScoreDisplay />
-      <Fretboard />
+      <ScoreDisplay gameState={gameState} />
+      <Fretboard
+        handleNoteClick={handleNoteClick}
+        clickedNote={clickedNote}
+        currentNote={gameState.currentNote}
+      />
     </>
   );
 }
