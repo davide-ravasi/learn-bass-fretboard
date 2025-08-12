@@ -1,6 +1,6 @@
 .fretboard {
   display: grid;
-  grid-template-columns: repeat(13, 1fr); /* 12 frets + nut */
+  grid-template-columns: repeat(12, 1fr); /* 12 frets + nut */
   grid-template-rows: repeat(4, 1fr); /* 4 strings */
   gap: 1px;
   background-color: #333;
@@ -26,6 +26,10 @@
   background-color: #e0e0e0;
 }
 
+.fret-position.highlighted {
+  background-color: #d7d1fc !important;
+}
+
 .fret-position.clicked {
   background-color: #4caf50 !important;
   color: white !important;
@@ -39,6 +43,8 @@
   box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
 }
 
-.fret-position.highlighted {
-  background-color: #d7d1fc !important;
+.fret-position.target {
+  background-color: #ff9800 !important; /* Orange for target */
+  color: white !important;
+  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
 }

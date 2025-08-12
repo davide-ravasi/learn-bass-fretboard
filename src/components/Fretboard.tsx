@@ -1,44 +1,34 @@
 import "./Fretboard.css";
 import { generateBassNotes } from "../data/notes";
 import type { GameState, Note } from "../types";
+import { clsx } from "clsx";
 
 export const Fretboard = ({
   clickedNote,
   handleNoteClick,
-  currentNote,
   gameState,
 }: {
   clickedNote: Note | undefined;
   handleNoteClick: (note: Note) => void;
-  currentNote: Note | null;
   gameState: GameState;
 }) => {
   const notes = generateBassNotes();
-  const { name, string, fret } = clickedNote || {};
 
   return (
     <div className="fretboard">
       {notes.map((note) => {
-        //  console.log(note);
+        const fretboardClasses = clsx("fret-position", {
+          clicked:
+            clickedNote?.name === note.name &&
+            clickedNote?.fret === note.fret &&
+            clickedNote?.string === note.string,
+          highlighted:
+            gameState.currentNote &&
+            gameState.currentNote.string === note.string,
+        });
         return (
           <div
-            className={`fret-position ${
-              name === note.name && fret === note.fret && string === note.string
-                ? "clicked"
-                : ""
-            } ${
-              currentNote &&
-              currentNote.name === note.name &&
-              currentNote.fret === note.fret &&
-              currentNote.string === note.string
-                ? "correct"
-                : ""
-            } ${
-              gameState.currentNote &&
-              gameState.currentNote.string === note.string
-                ? "highlighted"
-                : ""
-            }`}
+            className={fretboardClasses}
             key={`${note.string}-${note.fret}`}
             data-string={note.string}
             data-fret={note.fret}

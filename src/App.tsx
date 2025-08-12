@@ -47,7 +47,6 @@ function App() {
       <Fretboard
         handleNoteClick={handleNoteClick}
         clickedNote={clickedNote}
-        currentNote={gameState.currentNote}
         gameState={gameState}
       />
     </>
