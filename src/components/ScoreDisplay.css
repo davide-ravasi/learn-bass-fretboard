@@ -5,6 +5,7 @@
   margin: 20px 0;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
 }
 
 .stats {
@@ -17,7 +18,6 @@
 .stats p {
   margin: 0;
   font-weight: bold;
-  color: #333;
 }
 
 .current-note {

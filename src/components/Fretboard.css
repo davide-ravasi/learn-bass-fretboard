@@ -38,3 +38,7 @@
   color: white !important;
   box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
 }
+
+.fret-position.highlighted {
+  background-color: #d7d1fc !important;
+}

@@ -1,15 +1,17 @@
 import "./Fretboard.css";
 import { generateBassNotes } from "../data/notes";
-import type { Note } from "../types";
+import type { GameState, Note } from "../types";
 
 export const Fretboard = ({
   clickedNote,
   handleNoteClick,
   currentNote,
+  gameState,
 }: {
   clickedNote: Note | undefined;
   handleNoteClick: (note: Note) => void;
   currentNote: Note | null;
+  gameState: GameState;
 }) => {
   const notes = generateBassNotes();
   const { name, string, fret } = clickedNote || {};
@@ -30,6 +32,11 @@ export const Fretboard = ({
               currentNote.fret === note.fret &&
               currentNote.string === note.string
                 ? "correct"
+                : ""
+            } ${
+              gameState.currentNote &&
+              gameState.currentNote.string === note.string
+                ? "highlighted"
                 : ""
             }`}
             key={`${note.string}-${note.fret}`}

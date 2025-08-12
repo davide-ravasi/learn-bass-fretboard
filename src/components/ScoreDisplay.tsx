@@ -20,8 +20,8 @@ export const ScoreDisplay = ({ gameState }: { gameState: GameState }) => {
       </div>
       {gameState.currentNote && (
         <div className="current-note">
-          <h3>Find this note on the fretboard</h3>
-          <p>{gameState.currentNote.name}</p>
+          <h3 className="target-note">Find this note on the fretboard</h3>
+          <p className="target-note">{gameState.currentNote.name}</p>
         </div>
       )}
     </div>
