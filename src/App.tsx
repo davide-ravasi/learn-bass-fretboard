@@ -1,6 +1,7 @@
 import "./App.css";
 import { Fretboard } from "./components/Fretboard";
 import { ScoreDisplay } from "./components/ScoreDisplay";
+import { InstallPrompt } from "./components/InstallPrompt";
 import type { Note } from "./types";
 import { useGameState } from "./hooks/useGameState";
 import { useState } from "react";
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <>
+      <InstallPrompt />
       <div>
         <h1>Bass Fretboard App</h1>
         <p>Random Note: {gameState.currentNote?.name}</p>
