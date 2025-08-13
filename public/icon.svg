@@ -1,15 +1,42 @@
-<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="90" cy="90" r="85" fill="url(#gradient)" stroke="#2e7d32" stroke-width="3"/>
+  
+  <!-- Gradient definition -->
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#4caf50;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#45a049;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2e7d32;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <circle cx="96" cy="96" r="80" fill="url(#grad)" stroke="#2e7d32" stroke-width="4"/>
-  <text x="96" y="110" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="white">B</text>
-  <rect x="40" y="140" width="112" height="8" rx="4" fill="white" opacity="0.8"/>
-  <rect x="40" y="154" width="112" height="8" rx="4" fill="white" opacity="0.6"/>
-  <rect x="40" y="168" width="112" height="8" rx="4" fill="white" opacity="0.4"/>
-  <rect x="40" y="182" width="112" height="8" rx="4" fill="white" opacity="0.2"/>
+  
+  <!-- Bass Guitar Body -->
+  <rect x="60" y="100" width="60" height="40" rx="8" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Bass Guitar Neck -->
+  <rect x="75" y="60" width="30" height="45" fill="#d7ccc8" stroke="#8d6e63" stroke-width="2"/>
+  
+  <!-- Bass Guitar Headstock -->
+  <rect x="70" y="40" width="40" height="25" rx="4" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+  
+  <!-- Tuning Pegs -->
+  <circle cx="80" cy="52" r="3" fill="#424242"/>
+  <circle cx="100" cy="52" r="3" fill="#424242"/>
+  
+  <!-- Strings -->
+  <line x1="75" y1="70" x2="75" y2="105" stroke="#212121" stroke-width="1.5"/>
+  <line x1="82" y1="70" x2="82" y2="105" stroke="#212121" stroke-width="1.5"/>
+  <line x1="89" y1="70" x2="89" y2="105" stroke="#212121" stroke-width="1.5"/>
+  <line x1="96" y1="70" x2="96" y2="105" stroke="#212121" stroke-width="1.5"/>
+  
+  <!-- Frets -->
+  <line x1="75" y1="75" x2="105" y2="75" stroke="#8d6e63" stroke-width="1"/>
+  <line x1="75" y1="80" x2="105" y2="80" stroke="#8d6e63" stroke-width="1"/>
+  <line x1="75" y1="85" x2="105" y2="85" stroke="#8d6e63" stroke-width="1"/>
+  <line x1="75" y1="90" x2="105" y2="90" stroke="#8d6e63" stroke-width="1"/>
+  <line x1="75" y1="95" x2="105" y2="95" stroke="#8d6e63" stroke-width="1"/>
+  
+  <!-- Letter B for Bass -->
+  <text x="90" y="155" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">B</text>
 </svg>
 
