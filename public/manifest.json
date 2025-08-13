@@ -1,0 +1,19 @@
+{
+  "name": "Bass Guitar Learning App",
+  "short_name": "BassLearn",
+  "description": "Learn bass guitar notes on the fretboard with interactive practice",
+  "theme_color": "#4caf50",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
