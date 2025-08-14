@@ -9,6 +9,7 @@ import * as Tone from "tone";
 
 function App() {
   const [clickedNote, setClickedNote] = useState<Note>();
+  const [areHiddenNotes, setAreHiddenNotes] = useState(true);
   const [synth] = useState(() =>
     new Tone.Synth({
       oscillator: { type: "sawtooth" },
@@ -66,6 +67,10 @@ function App() {
     generateNewNote();
   };
 
+  const handleToggleNotes = () => {
+    setAreHiddenNotes(!areHiddenNotes);
+  };
+
   return (
     <>
       <InstallPrompt />
@@ -88,10 +93,14 @@ function App() {
           </button>
         ) : (
           <>
+            <button onClick={handleToggleNotes}>
+              {areHiddenNotes ? "Show Notes" : "Hide Notes"}
+            </button>
             <Fretboard
               handleNoteClick={handleNoteClick}
               clickedNote={clickedNote}
               gameState={gameState}
+              areHiddenNotes={areHiddenNotes}
             />
             <div className={`feedback ${feedback.type}`}>
               {feedback.message}

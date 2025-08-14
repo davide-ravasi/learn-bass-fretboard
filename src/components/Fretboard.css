@@ -20,13 +20,20 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
+  user-select: none;
 }
 
+/* Open string styling (fret 0) */
 .fret-position.open-string {
-  width: 10px;
+  min-height: 25px; /* Thinner than regular frets */
+  font-size: 0.9em; /* Slightly smaller text */
+  opacity: 0.8; /* More subtle appearance */
+  border-width: 1px; /* Thinner border */
+  background-color: #e8e8e8; /* Slightly different background */
 }
 
+/* Fretboard dots */
 .fret-position.dot-position::after {
   position: absolute;
   top: 50%;
@@ -34,16 +41,32 @@
   transform: translate(-50%, -50%);
   content: "";
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-color: #333;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
+/* Hover effects */
 .fret-position:hover {
   background-color: #e0e0e0;
+  transform: scale(1.02);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.fret-position.open-string:hover {
+  min-height: 28px; /* Slightly thicker on hover */
+  opacity: 1; /* Full opacity on hover */
+}
+
+.fret-position:active {
+  transform: scale(0.98);
+  background-color: #d0d0d0;
+}
+
+/* Game state styling */
 .fret-position.highlighted {
   background-color: #d7d1fc !important;
 }
@@ -56,13 +79,41 @@
 }
 
 .fret-position.correct {
-  background-color: #2196f3 !important;
+  background-color: #4caf50 !important; /* Green for correct */
   color: white !important;
-  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  animation: correctPulse 0.6s ease-in-out;
 }
 
-.fret-position.target {
-  background-color: #ff9800 !important; /* Orange for target */
+.fret-position.incorrect {
+  background-color: #f44336 !important; /* Red for incorrect */
   color: white !important;
-  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+  transform: scale(0.95);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+  animation: incorrectShake 0.6s ease-in-out;
+}
+
+/* Animations */
+@keyframes correctPulse {
+  0%,
+  100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes incorrectShake {
+  0%,
+  100% {
+    transform: translateX(0) scale(0.95);
+  }
+  25% {
+    transform: translateX(-2px) scale(0.95);
+  }
+  75% {
+    transform: translateX(2px) scale(0.95);
+  }
 }
