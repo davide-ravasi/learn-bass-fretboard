@@ -5,9 +5,17 @@ import { InstallPrompt } from "./components/InstallPrompt";
 import type { Note } from "./types";
 import { useGameState } from "./hooks/useGameState";
 import { useState, useEffect } from "react";
+import * as Tone from "tone";
 
 function App() {
   const [clickedNote, setClickedNote] = useState<Note>();
+  const [synth] = useState(() =>
+    new Tone.Synth({
+      oscillator: { type: "sawtooth" },
+      envelope: { attack: 0.1, decay: 0.2, sustain: 0.3, release: 0.8 },
+    }).toDestination()
+  );
+
   const { startNewGame, gameState, checkAnswer, generateNewNote } =
     useGameState();
   const [feedback, setFeedback] = useState<{
@@ -22,8 +30,20 @@ function App() {
     setIsIOS(iOS);
   }, []);
 
-  const handleNoteClick = (note: Note) => {
+  const playNote = async (note: Note) => {
+    const noteFrequency = note.frequency;
+    await Tone.start();
+    synth.triggerAttackRelease(noteFrequency, "8n");
+  };
+
+  const handleNoteClick = async (note: Note) => {
     if (!gameState.isPlaying) return;
+
+    try {
+      await playNote(note);
+    } catch (error) {
+      console.error("Error playing note:", error);
+    }
 
     setClickedNote(note);
     const isCorrect = checkAnswer(note);
