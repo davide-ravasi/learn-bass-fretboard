@@ -16,7 +16,7 @@ export const Fretboard = ({
 
   return (
     <div className="fretboard">
-      {notes.map((note) => {
+      {notes.map((note, index) => {
         const fretboardClasses = clsx("fret-position", {
           clicked:
             clickedNote?.name === note.name &&
@@ -25,6 +25,20 @@ export const Fretboard = ({
           highlighted:
             gameState.currentNote &&
             gameState.currentNote.string === note.string,
+          "open-string": index % 12 === 0,
+          "dot-position":
+            index === 3 ||
+            index === 5 ||
+            index === 7 ||
+            index === 15 ||
+            index === 17 ||
+            index === 19 ||
+            index === 27 ||
+            index === 29 ||
+            index === 31 ||
+            index === 39 ||
+            index === 41 ||
+            index === 43,
         });
         return (
           <div

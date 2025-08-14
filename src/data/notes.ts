@@ -40,7 +40,7 @@ const getNoteName = (openNote: string, fret: number) => {
 export const generateBassNotes = (): Note[] => {
   const notes: Note[] = [];
 
-  for (let string = 1; string <= 4; string++) {
+  for (let string = 4; string >= 1; string--) {
     const openNote = STRING_TUNINGS[string - 1];
     const baseFreq = OPEN_FREQUENCIES[string - 1];
 

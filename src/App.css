@@ -100,3 +100,8 @@
     text-align: center;
   }
 }
+
+.feedback {
+  margin-top: 15px;
+  min-height: 30px;
+}

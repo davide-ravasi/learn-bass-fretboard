@@ -88,17 +88,15 @@ function App() {
           </button>
         ) : (
           <>
-            <ScoreDisplay gameState={gameState} />
-            {feedback.message && (
-              <div className={`feedback ${feedback.type}`}>
-                {feedback.message}
-              </div>
-            )}
             <Fretboard
               handleNoteClick={handleNoteClick}
               clickedNote={clickedNote}
               gameState={gameState}
             />
+            <div className={`feedback ${feedback.type}`}>
+              {feedback.message}
+            </div>
+            <ScoreDisplay gameState={gameState} />
           </>
         )}
       </div>

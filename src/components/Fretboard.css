@@ -11,6 +11,7 @@
 }
 
 .fret-position {
+  position: relative;
   background-color: #f5f5f5;
   color: #333;
   border: 1px solid #ddd;
@@ -20,6 +21,23 @@
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+.fret-position.open-string {
+  width: 10px;
+}
+
+.fret-position.dot-position::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #333;
 }
 
 .fret-position:hover {
