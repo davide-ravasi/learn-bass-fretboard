@@ -10,6 +10,15 @@
   margin: 0 auto;
 }
 
+/*@media (max-width: 768px) {
+  .fretboard {
+    transform: rotate(90deg);
+    transform-origin: center center;
+    width: 60vh;
+    height: 60vw;
+  }
+} */
+
 .fret-position {
   position: relative;
   background-color: #f5f5f5;

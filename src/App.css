@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.app h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
 .start-button {
   background-color: #4caf50;
   color: white;
@@ -104,4 +111,35 @@
 .feedback {
   margin-top: 15px;
   min-height: 30px;
+}
+
+.toggle-notes-container {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.toggle-notes-container h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.toggle-notes-container .target-note {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.toggle-notes-container button {
+  margin-left: 10px;
+}
+
+.toggle-notes-container .current-note {
+  align-self: stretch;
+  margin-top: 5px;
+  padding: 4px;
 }

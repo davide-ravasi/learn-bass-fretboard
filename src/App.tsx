@@ -77,25 +77,34 @@ function App() {
       <div className="app">
         <h1>Bass Guitar Learning App</h1>
 
-        {/* iOS PWA Instructions */}
-        {isIOS && (
-          <div className="ios-install-hint">
-            <p>
-              📱 <strong>Tip:</strong> Tap the Share button (□↑) then "Add to
-              Home Screen" to install this app!
-            </p>
-          </div>
-        )}
-
         {!gameState.isPlaying ? (
-          <button onClick={handleNewGame} className="start-button">
-            Start Practice
-          </button>
+          <>
+            {isIOS && (
+              <div className="ios-install-hint">
+                <p>
+                  📱 <strong>Tip:</strong> Tap the Share button (□↑) then "Add
+                  to Home Screen" to install this app!
+                </p>
+              </div>
+            )}
+            <button onClick={handleNewGame} className="start-button">
+              Start Practice
+            </button>
+          </>
         ) : (
           <>
-            <button onClick={handleToggleNotes}>
-              {areHiddenNotes ? "Show Notes" : "Hide Notes"}
-            </button>
+            <div className="toggle-notes-container">
+              {gameState.currentNote && (
+                <div className="current-note">
+                  <h3 className="target-note">Find this note:</h3>
+                  <p className="target-note">{gameState.currentNote.name}</p>
+                </div>
+              )}
+
+              <button onClick={handleToggleNotes}>
+                {areHiddenNotes ? "Show Notes" : "Hide Notes"}
+              </button>
+            </div>
             <Fretboard
               handleNoteClick={handleNoteClick}
               clickedNote={clickedNote}

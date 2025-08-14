@@ -18,12 +18,6 @@ export const ScoreDisplay = ({ gameState }: { gameState: GameState }) => {
             : "0%"}
         </p>
       </div>
-      {gameState.currentNote && (
-        <div className="current-note">
-          <h3 className="target-note">Find this note on the fretboard</h3>
-          <p className="target-note">{gameState.currentNote.name}</p>
-        </div>
-      )}
     </div>
   );
 };
