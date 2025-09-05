@@ -75,10 +75,9 @@ function App() {
     <>
       <InstallPrompt />
       <div className="app">
-        <h1>Bass Guitar Learning App</h1>
-
         {!gameState.isPlaying ? (
           <>
+            <h1>Bass Guitar Learning App</h1>
             {isIOS && (
               <div className="ios-install-hint">
                 <p>
@@ -92,14 +91,9 @@ function App() {
             </button>
           </>
         ) : (
-          <>
+          <div className="app-content">
             <div className="toggle-notes-container">
-              {gameState.currentNote && (
-                <div className="current-note">
-                  <h3 className="target-note">Find this note:</h3>
-                  <p className="target-note">{gameState.currentNote.name}</p>
-                </div>
-              )}
+              <ScoreDisplay gameState={gameState} />
 
               <button onClick={handleToggleNotes}>
                 {areHiddenNotes ? "Show Notes" : "Hide Notes"}
@@ -114,8 +108,7 @@ function App() {
             <div className={`feedback ${feedback.type}`}>
               {feedback.message}
             </div>
-            <ScoreDisplay gameState={gameState} />
-          </>
+          </div>
         )}
       </div>
     </>

@@ -1,8 +1,21 @@
 .app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+}
+
+.app-content {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: rotate(90deg);
+  /*transform-origin: top left;*/
+  overflow: hidden;
+  touch-action: manipulation;
 }
 
 .app h1 {
@@ -25,24 +38,6 @@
 
 .start-button:hover {
   background-color: #45a049;
-}
-
-.score-display {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-around;
-  margin: 15px 0;
-}
-
-.current-note {
-  margin-top: 15px;
 }
 
 .target-note {
