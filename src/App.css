@@ -46,6 +46,17 @@
   color: #4caf50;
 }
 
+/*
+@media (max-width: 768px) {
+  .fretboard {
+    transform: rotateX(180deg);
+    transform-origin: bottom;
+  }
+}
+
+
+*/
+
 .install-prompt {
   position: fixed;
   top: 20px;
