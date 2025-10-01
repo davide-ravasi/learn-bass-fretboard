@@ -5,17 +5,7 @@
 }
 
 .app-content {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transform: rotate(90deg);
-  /*transform-origin: top left;*/
-  overflow: hidden;
-  touch-action: manipulation;
+  /* Rotation removed - will implement proper flexbox layout later */
 }
 
 .app h1 {
@@ -119,7 +109,7 @@
   min-height: 30px;
 }
 
-.toggle-notes-container {
+.info-panel {
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -128,23 +118,23 @@
   margin-bottom: 15px;
 }
 
-.toggle-notes-container h3 {
+.info-panel h3 {
   font-size: 16px;
   font-weight: bold;
   color: #4caf50;
 }
 
-.toggle-notes-container .target-note {
+.info-panel .target-note {
   font-size: 16px;
   font-weight: bold;
   color: #4caf50;
 }
 
-.toggle-notes-container button {
+.info-panel button {
   margin-left: 10px;
 }
 
-.toggle-notes-container .current-note {
+.info-panel .current-note {
   align-self: stretch;
   margin-top: 5px;
   padding: 4px;

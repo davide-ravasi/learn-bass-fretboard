@@ -92,7 +92,7 @@ function App() {
           </>
         ) : (
           <div className="app-content">
-            <div className="toggle-notes-container">
+            <div className="info-panel">
               <ScoreDisplay gameState={gameState} />
 
               <button onClick={handleToggleNotes}>

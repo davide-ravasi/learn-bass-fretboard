@@ -223,41 +223,6 @@
 - [x] **Frequency Mapping**: Uses existing note frequency data
 - [x] **Browser Compatibility**: Works across all modern browsers
 
-### Future Audio Enhancements:
-
-- [ ] **Bass-Specific Sound**: Customize synth for authentic bass tones
-- [ ] **Volume Control**: User-adjustable audio levels
-- [ ] **Sound Toggle**: On/off switch for audio
-- [ ] **Metronome**: Timing practice with click tracks
-- [ ] **Different Instruments**: Choose between bass, guitar, piano sounds
-- [ ] **Audio Visualizer**: Visual representation of played notes
-
----
-
-## 📋 Session 9: Practice Modes & Timing
-
-**Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** ⏳ Pending
-
-### Tasks:
-
-- [ ] Add different difficulty levels
-- [ ] Implement auto-advance mode
-- [ ] Add timing controls
-- [ ] Create practice settings
-
-### Files to Create/Modify:
-
-- [ ] `src/components/Controls.tsx` - Practice controls
-- [ ] `src/hooks/useTimer.ts` - Timing functionality
-- [ ] `src/components/NoteDisplay.tsx` - Note display
-
-### Implementation Steps:
-
-1. Add difficulty settings (easy/medium/hard)
-2. Implement BPM controls
-3. Add auto-advance functionality
-4. Create practice mode toggles
-
 ---
 
 ## 📋 Session 8: Code Improvements & Interface Enhancements
@@ -295,9 +260,62 @@
 - [ ] **Code Reusability**: Make components more modular
 - [ ] **Performance**: Optimize re-renders and state management
 
+### Interface Improvements:
+
+- [ ] **Responsive Fretboard Layout**: Implement flexbox-based vertical fretboard
+
+  - [ ] Always vertical layout using flexbox (not rotation)
+  - [ ] Desktop layout: Horizontal fretboard with side controls
+  - [ ] Portrait mode (mobile): Vertical fretboard with top controls
+  - [ ] Landscape mode (mobile): Auto-rotate notes, maintain vertical fretboard
+  - [ ] Proper touch targets (44px minimum) for mobile
+  - [ ] Media queries for desktop/tablet/mobile breakpoints
+  - [ ] Test across different screen sizes and orientations
+
+- [ ] **BEM CSS Naming Convention**: Refactor all CSS to use standardized BEM methodology
+
+  - [ ] Refactor Fretboard component CSS to BEM
+  - [ ] Refactor App component CSS to BEM
+  - [ ] Refactor ScoreDisplay component CSS to BEM
+  - [ ] Update all component class names to follow BEM structure
+  - [ ] Document BEM naming patterns in project
+  - [ ] Create BEM reference guide for consistency
+
+  **BEM Structure Examples:**
+
+  - Block: `.fretboard`, `.score-display`, `.info-panel`
+  - Element: `.fretboard__position`, `.score-display__accuracy`, `.info-panel__button`
+  - Modifier: `.fretboard__position--clicked`, `.fretboard__position--highlighted`, `.score-display--mobile`
+
 ---
 
-## 📋 Session 9: Unit Testing & Test Setup
+## 📋 Session 9: Practice Modes & Timing
+
+**Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** ⏳ Pending
+
+### Tasks:
+
+- [ ] Add different difficulty levels
+- [ ] Implement auto-advance mode
+- [ ] Add timing controls
+- [ ] Create practice settings
+
+### Files to Create/Modify:
+
+- [ ] `src/components/Controls.tsx` - Practice controls
+- [ ] `src/hooks/useTimer.ts` - Timing functionality
+- [ ] `src/components/NoteDisplay.tsx` - Note display
+
+### Implementation Steps:
+
+1. Add difficulty settings (easy/medium/hard)
+2. Implement BPM controls
+3. Add auto-advance functionality
+4. Create practice mode toggles
+
+---
+
+## 📋 Session 10: Unit Testing & Test Setup
 
 **Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** ⏳ Pending
 
@@ -325,7 +343,7 @@
 
 ---
 
-## 📋 Session 9: CI/CD Pipeline
+## 📋 Session 11: CI/CD Pipeline
 
 **Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** ⏳ Pending
 
@@ -351,7 +369,7 @@
 
 ---
 
-## 📋 Session 10: Polish & Enhanced Features
+## 📋 Session 12: Polish & Enhanced Features
 
 **Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** ⏳ Pending
 
@@ -374,6 +392,15 @@
 2. Implement progress persistence
 3. Add keyboard navigation
 4. Final UI polish
+
+### Future Audio Enhancements:
+
+- [ ] **Bass-Specific Sound**: Customize synth for authentic bass tones
+- [ ] **Volume Control**: User-adjustable audio levels
+- [ ] **Sound Toggle**: On/off switch for audio
+- [ ] **Metronome**: Timing practice with click tracks
+- [ ] **Different Instruments**: Choose between bass, guitar, piano sounds
+- [ ] **Audio Visualizer**: Visual representation of played notes
 
 ---
 
