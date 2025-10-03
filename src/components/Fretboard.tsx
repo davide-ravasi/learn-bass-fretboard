@@ -1,7 +1,7 @@
 import "./Fretboard.css";
 import { generateBassNotes } from "../data/notes";
 import type { GameState, Note } from "../types";
-import { clsx } from "clsx";
+import { Fret } from "./Fret";
 
 // Helper function to determine if a fret should have a dot
 const shouldHaveDot = (fret: number): boolean => {
@@ -45,32 +45,26 @@ export const Fretboard = ({
 
   return (
     <div className="fretboard">
-      {notes.map((note) => {
-        const fretboardClasses = clsx("fret-position", {
-          clicked: isClickedNote(note, clickedNote),
-          highlighted:
-            gameState.currentNote &&
-            gameState.currentNote.string === note.string,
-          correct:
-            isCurrentNote(note, gameState) && isClickedNote(note, clickedNote),
-          incorrect:
-            isClickedNote(note, clickedNote) && !isCurrentNote(note, gameState),
-          "dot-position": shouldHaveDot(note.fret),
-          "open-string": isOpenString(note.fret),
-        });
-
-        return (
-          <div
-            className={fretboardClasses}
-            key={`${note.string}-${note.fret}`}
-            data-string={note.string}
-            data-fret={note.fret}
-            onClick={() => handleNoteClick(note)}
-          >
-            {!areHiddenNotes && note.name}
-          </div>
-        );
-      })}
+      {[1, 2, 3, 4].map((string) => (
+        <div className="string" key={string}>
+          {notes
+            .filter((note) => note.string === string)
+            .map((note) => (
+              <Fret
+                key={`${note.string}-${note.fret}`}
+                note={note}
+                clickedNote={clickedNote}
+                gameState={gameState}
+                handleNoteClick={handleNoteClick}
+                shouldHaveDot={shouldHaveDot}
+                isOpenString={isOpenString}
+                isCurrentNote={isCurrentNote}
+                isClickedNote={isClickedNote}
+                areHiddenNotes={areHiddenNotes}
+              />
+            ))}
+        </div>
+      ))}
     </div>
   );
 };
