@@ -9,7 +9,6 @@ export const Fret = ({
   clickedNote,
   gameState,
   handleNoteClick,
-  shouldHaveDot,
   isOpenString,
   isCurrentNote,
   isClickedNote,
@@ -19,7 +18,6 @@ export const Fret = ({
   clickedNote: Note | undefined;
   gameState: GameState;
   handleNoteClick: (note: Note) => void;
-  shouldHaveDot: (fret: number) => boolean;
   isOpenString: (fret: number) => boolean;
   isCurrentNote: (note: Note, gameState: GameState) => boolean | null;
   isClickedNote: (note: Note, clickedNote: Note | undefined) => boolean;
@@ -32,7 +30,6 @@ export const Fret = ({
     correct: isCurrentNote(note, gameState) && isClickedNote(note, clickedNote),
     incorrect:
       isClickedNote(note, clickedNote) && !isCurrentNote(note, gameState),
-    "dot-position": shouldHaveDot(note.fret),
     "open-string": isOpenString(note.fret),
   });
 
