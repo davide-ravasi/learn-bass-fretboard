@@ -41,7 +41,7 @@ export const Fret = ({
       data-fret={note.fret}
       onClick={() => handleNoteClick(note)}
     >
-      {!areHiddenNotes && note.name}
+      <div className="note-label">{!areHiddenNotes && note.name}</div>
     </div>
   );
 };
