@@ -124,6 +124,7 @@
   .fretboard {
     display: flex; /* switch from grid to flex */
     flex-direction: column; /* strings stacked vertically */
+    flex-flow: column-reverse; /* reverse the string to be right */
     gap: 2px;
   }
 
@@ -133,6 +134,29 @@
 
   .fret-position {
     min-width: 44px; /* touch-friendly */
+  }
+
+  .fret-position__dot:nth-child(2),
+  .fret-position__dot:nth-child(3),
+  .fret-position__dot:nth-child(4),
+  .fret-position__dot:nth-child(5) {
+    top: 105px;
+  }
+
+  .fret-position__dot:nth-child(2) {
+    left: 180px;
+  }
+
+  .fret-position__dot:nth-child(3) {
+    left: 270px;
+  }
+
+  .fret-position__dot:nth-child(4) {
+    left: 360px;
+  }
+
+  .fret-position__dot:nth-child(5) {
+    left: 450px;
   }
 
   .note-label {
