@@ -1,15 +1,17 @@
 .app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.5rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
 }
 
-.app h1 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #4caf50;
-  margin-bottom: 20px;
+.app-content {
+  /* Rotation removed - will implement proper flexbox layout later */
 }
 
 .start-button {
@@ -25,24 +27,6 @@
 
 .start-button:hover {
   background-color: #45a049;
-}
-
-.score-display {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-around;
-  margin: 15px 0;
-}
-
-.current-note {
-  margin-top: 15px;
 }
 
 .target-note {
@@ -113,7 +97,7 @@
   min-height: 30px;
 }
 
-.toggle-notes-container {
+.info-panel {
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -122,23 +106,23 @@
   margin-bottom: 15px;
 }
 
-.toggle-notes-container h3 {
+.info-panel h3 {
   font-size: 16px;
   font-weight: bold;
   color: #4caf50;
 }
 
-.toggle-notes-container .target-note {
+.info-panel .target-note {
   font-size: 16px;
   font-weight: bold;
   color: #4caf50;
 }
 
-.toggle-notes-container button {
+.info-panel button {
   margin-left: 10px;
 }
 
-.toggle-notes-container .current-note {
+.info-panel .current-note {
   align-self: stretch;
   margin-top: 5px;
   padding: 4px;

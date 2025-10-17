@@ -1,14 +1,7 @@
 import "./Fretboard.css";
 import { generateBassNotes } from "../data/notes";
 import type { GameState, Note } from "../types";
-import { clsx } from "clsx";
-
-// Helper function to determine if a fret should have a dot
-const shouldHaveDot = (fret: number): boolean => {
-  // Standard fretboard dots at frets 3, 5, 7, 9, 12
-  // For your 11-fret range, we'll use 3, 5, 7
-  return fret === 3 || fret === 5 || fret === 7;
-};
+import { Fret } from "./Fret";
 
 const isOpenString = (fret: number): boolean => {
   return fret === 0;
@@ -44,33 +37,32 @@ export const Fretboard = ({
   const notes = generateBassNotes();
 
   return (
-    <div className="fretboard">
-      {notes.map((note) => {
-        const fretboardClasses = clsx("fret-position", {
-          clicked: isClickedNote(note, clickedNote),
-          highlighted:
-            gameState.currentNote &&
-            gameState.currentNote.string === note.string,
-          correct:
-            isCurrentNote(note, gameState) && isClickedNote(note, clickedNote),
-          incorrect:
-            isClickedNote(note, clickedNote) && !isCurrentNote(note, gameState),
-          "dot-position": shouldHaveDot(note.fret),
-          "open-string": isOpenString(note.fret),
-        });
-
-        return (
-          <div
-            className={fretboardClasses}
-            key={`${note.string}-${note.fret}`}
-            data-string={note.string}
-            data-fret={note.fret}
-            onClick={() => handleNoteClick(note)}
-          >
-            {!areHiddenNotes && note.name}
+    <div className="fretboard__container">
+      <div className="fretboard">
+        {[1, 2, 3, 4].map((string) => (
+          <div className="string" key={string}>
+            {notes
+              .filter((note) => note.string === string)
+              .map((note) => (
+                <Fret
+                  key={`${note.string}-${note.fret}`}
+                  note={note}
+                  clickedNote={clickedNote}
+                  gameState={gameState}
+                  handleNoteClick={handleNoteClick}
+                  isOpenString={isOpenString}
+                  isCurrentNote={isCurrentNote}
+                  isClickedNote={isClickedNote}
+                  areHiddenNotes={areHiddenNotes}
+                />
+              ))}
           </div>
-        );
-      })}
+        ))}
+      </div>
+      <div className="fret-position__dot"></div>
+      <div className="fret-position__dot"></div>
+      <div className="fret-position__dot"></div>
+      <div className="fret-position__dot"></div>
     </div>
   );
 };

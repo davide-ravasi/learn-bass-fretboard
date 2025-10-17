@@ -4,10 +4,14 @@ import "./ScoreDisplay.css";
 export const ScoreDisplay = ({ gameState }: { gameState: GameState }) => {
   return (
     <div className="score-display">
-      <h2>Score: {gameState.score}</h2>
       <div className="stats">
-        <p>Total Attempts: {gameState.totalAttempts}</p>
-        <p>Correct Attempts: {gameState.correctAttempts}</p>
+        {gameState.currentNote && (
+          <p className="target-note">Find: {gameState.currentNote.name}</p>
+        )}
+        <p>Score: {gameState.score}</p>
+        <p>
+          Corrects: {gameState.correctAttempts}/{gameState.totalAttempts}
+        </p>
         <p>
           Accuracy:{" "}
           {gameState.totalAttempts > 0
