@@ -33,6 +33,14 @@ export const Fret = ({
     "open-string": isOpenString(note.fret),
   });
 
+  const isFretDotVisible =
+    note.string === 3 &&
+    (note.fret === 3 ||
+      note.fret === 5 ||
+      note.fret === 7 ||
+      note.fret === 9 ||
+      note.fret === 12);
+
   return (
     <div
       className={fretboardClasses}
@@ -42,6 +50,7 @@ export const Fret = ({
       onClick={() => handleNoteClick(note)}
     >
       <div className="note-label">{!areHiddenNotes && note.name}</div>
+      {isFretDotVisible && <div className="fret-position__dot"></div>}
     </div>
   );
 };

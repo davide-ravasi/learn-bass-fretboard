@@ -37,32 +37,26 @@ export const Fretboard = ({
   const notes = generateBassNotes();
 
   return (
-    <div className="fretboard__container">
-      <div className="fretboard">
-        {[1, 2, 3, 4].map((string) => (
-          <div className="string" key={string}>
-            {notes
-              .filter((note) => note.string === string)
-              .map((note) => (
-                <Fret
-                  key={`${note.string}-${note.fret}`}
-                  note={note}
-                  clickedNote={clickedNote}
-                  gameState={gameState}
-                  handleNoteClick={handleNoteClick}
-                  isOpenString={isOpenString}
-                  isCurrentNote={isCurrentNote}
-                  isClickedNote={isClickedNote}
-                  areHiddenNotes={areHiddenNotes}
-                />
-              ))}
-          </div>
-        ))}
-      </div>
-      <div className="fret-position__dot"></div>
-      <div className="fret-position__dot"></div>
-      <div className="fret-position__dot"></div>
-      <div className="fret-position__dot"></div>
+    <div className="fretboard">
+      {[1, 2, 3, 4].map((string) => (
+        <div className="string" key={string}>
+          {notes
+            .filter((note) => note.string === string)
+            .map((note) => (
+              <Fret
+                key={`${note.string}-${note.fret}`}
+                note={note}
+                clickedNote={clickedNote}
+                gameState={gameState}
+                handleNoteClick={handleNoteClick}
+                isOpenString={isOpenString}
+                isCurrentNote={isCurrentNote}
+                isClickedNote={isClickedNote}
+                areHiddenNotes={areHiddenNotes}
+              />
+            ))}
+        </div>
+      ))}
     </div>
   );
 };
