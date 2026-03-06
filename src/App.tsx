@@ -14,7 +14,7 @@ function App() {
     new Tone.Synth({
       oscillator: { type: "sawtooth" },
       envelope: { attack: 0.1, decay: 0.2, sustain: 0.3, release: 0.8 },
-    }).toDestination()
+    }).toDestination(),
   );
 
   const { startNewGame, gameState, checkAnswer, generateNewNote } =
@@ -98,6 +98,9 @@ function App() {
               <button onClick={handleToggleNotes}>
                 {areHiddenNotes ? "Show Notes" : "Hide Notes"}
               </button>
+              <div className={`feedback ${feedback.type}`}>
+                {feedback.message}
+              </div>
             </div>
             <Fretboard
               handleNoteClick={handleNoteClick}
@@ -105,9 +108,6 @@ function App() {
               gameState={gameState}
               areHiddenNotes={areHiddenNotes}
             />
-            <div className={`feedback ${feedback.type}`}>
-              {feedback.message}
-            </div>
           </div>
         )}
       </div>

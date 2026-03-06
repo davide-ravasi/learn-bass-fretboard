@@ -117,18 +117,19 @@
   }
 
   .fret-position {
-    min-width: 44px; /* touch-friendly */
+    min-width: 40px; /* touch-friendly */
+    min-height: 60px;
   }
 
   .fret-position__dot:nth-child(2),
   .fret-position__dot:nth-child(3),
   .fret-position__dot:nth-child(4),
   .fret-position__dot:nth-child(5) {
-    top: 105px;
+    top: 62px;
   }
 
   .fret-position__dot:nth-child(2) {
-    left: 180px;
+    left: 23px;
   }
 
   .fret-position__dot:nth-child(3) {
