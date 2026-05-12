@@ -227,7 +227,14 @@
 
 ## 📋 Session 8: Code Improvements & Interface Enhancements
 
-**Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** 🎯 Next Session
+**Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** 🎯 In Progress  
+**Branch:** Separate branch for vertical/landscape layout work
+
+### Recent progress (resume next day)
+- [x] Vertical fretboard foundation
+- [ ] **Landscape layout** – improving layout when device is horizontal
+- [ ] **Fret dots** – fix position when horizontal (dots were not in the right place)
+- [ ] **Info panel** – move all infos into the info panel (consolidate top bar)
 
 ### Tasks:
 
@@ -252,6 +259,31 @@
 4. Improve component reusability
 5. Add proper TypeScript types for helpers
 
+#### Next Steps (Agreed)
+
+- [ ] Adopt BEM naming across UI components
+  - [ ] Map current classes → BEM (`.fretboard`, `.fretboard__string`, `.fretboard__fret`, modifiers for clicked/highlighted/correct/incorrect/open/dot)
+  - [ ] Update JSX classNames in `Fret.tsx`, `Fretboard.tsx`, `ScoreDisplay.tsx` to match
+  - [ ] Keep indentation and formatting unchanged; avoid unrelated refactors
+- [ ] Mobile landscape behavior
+  - [ ] Horizontal fretboard in mobile landscape
+  - [ ] Rotate only note labels in landscape (use `.note-label` span + media query)
+  - [ ] Keep portrait and desktop unrotated
+- [ ] Touch targets and spacing
+  - [ ] Ensure min 44px touch size for frets in both orientations
+  - [ ] Adjust `.note-label` spacing (`line-height`, padding or letter-spacing) if cramped
+- [ ] Overflow and layout safety
+  - [ ] Prevent horizontal scrolling; clamp widths; add `overflow-x: hidden` if needed
+  - [ ] Verify ScoreDisplay remains visible and readable in all orientations
+
+#### Nice-to-have (End of Session)
+
+- [ ] Tablet-specific rules (iPad landscape may keep labels unrotated if cramped)
+- [ ] Reduced motion support: disable animations with `@media (prefers-reduced-motion: reduce)`
+- [ ] Safe areas for PWA (iOS notches): `padding: env(safe-area-inset-*)`
+- [ ] 12th-fret double dot styling
+- [ ] Document BEM naming patterns and include quick reference in `docs/`
+
 ### Code Improvements:
 
 - [ ] **Component Separation**: Break down App.tsx into smaller components
@@ -271,6 +303,8 @@
   - [ ] Proper touch targets (44px minimum) for mobile
   - [ ] Media queries for desktop/tablet/mobile breakpoints
   - [ ] Test across different screen sizes and orientations
+
+  - [ ] Mobile landscape: keep fretboard horizontal; rotate note labels only
 
 - [ ] **BEM CSS Naming Convention**: Refactor all CSS to use standardized BEM methodology
 
