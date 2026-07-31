@@ -1,8 +1,11 @@
 # Technical Architecture Plan
 
+> **Visione v2 (archivio).** Non implementare l’albero a 60 file day-1.  
+> Curriculum: [../../planning/ALIGNED_PLAN.md](../../planning/ALIGNED_PLAN.md) §4–5. Estrai pattern solo quando arriva la feature.
+
 **Date:** 26 Luglio 2026  
 **Project:** Bass Guitar Learning App  
-**Phase:** Personal Tool → Commercial Product  
+**Phase:** Reference architecture (non roadmap operativa)  
 **Stack:** React + TypeScript + Vite + Tone.js + PWA
 
 ---

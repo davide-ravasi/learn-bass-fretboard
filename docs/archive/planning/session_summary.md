@@ -1,5 +1,8 @@
 # Session Summary: Planning & Analysis
 
+> **Archivio.** Piano operativo: [../../planning/ALIGNED_PLAN.md](../../planning/ALIGNED_PLAN.md).  
+> Diario sessione 26/07/2026 (ARR / timeline 8 settimane = non vincolanti).
+
 **Data:** 26 Luglio 2026  
 **Durata:** ~2 ore  
 **Tipo:** Strategic Planning & Discovery  

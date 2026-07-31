@@ -1,5 +1,8 @@
 # Competitor Analysis: Fretonomy
 
+> **Archivio / ispirazione prodotto.** Piano: [../../planning/ALIGNED_PLAN.md](../../planning/ALIGNED_PLAN.md).  
+> Usa per heatmap, fret range, scale curated — **non** pricing/ARR come driver di scope.
+
 **Data Analisi:** 26 Luglio 2026  
 **App:** Fretonomy - Learn Fretboard  
 **Developer:** Strong Apps LLC  

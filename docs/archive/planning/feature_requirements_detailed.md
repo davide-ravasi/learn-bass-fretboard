@@ -1,9 +1,12 @@
 # Feature Requirements: Detailed Specification
 
+> **Catalogo idee (archivio).** Implementa solo Fase A–C in [../../planning/ALIGNED_PLAN.md](../../planning/ALIGNED_PLAN.md).  
+> Le 25 feature / tier commerciali = backlog opzionale, non impegno.
+
 **Data:** 26 Luglio 2026  
 **Autore:** Cloud Agent Analysis + User Input  
-**Status:** Planning Phase  
-**Target:** Personal Tool → Commercial Product
+**Status:** Archivio / reference  
+**Target originale:** Personal Tool → Commercial Product (ricalibrato: imparare + usare + share se qualità ok)
 
 ---
 

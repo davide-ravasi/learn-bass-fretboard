@@ -1,5 +1,8 @@
 # 🚀 PWA Conversion Guide for Bass Guitar Learning App
 
+> **ARCHIVED** (28 Luglio 2026). Guida lunga “how we did it”. Preferisci [pwa_quick_reference.md](./pwa_quick_reference.md) o il codice.  
+> Piano: [../planning/ALIGNED_PLAN.md](../planning/ALIGNED_PLAN.md)
+
 ## 📋 Table of Contents
 
 1. [What is a PWA?](#what-is-a-pwa)

@@ -1,5 +1,8 @@
 # CSS Improvements Analysis - Guitar Fretboard Inspiration
 
+> **ARCHIVED** (28 Luglio 2026). Snapshot del vecchio CSS “basic grid”. Il fretboard attuale è in `src/components/Fretboard.css`.  
+> Non usare come target design. Piano: [../planning/ALIGNED_PLAN.md](../planning/ALIGNED_PLAN.md)
+
 ## 🎸 CodePen Reference
 
 **Source:** [Guitar Fretboard by DreySkee](https://codepen.io/DreySkee/pen/bddpqM)

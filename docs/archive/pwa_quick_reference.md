@@ -1,5 +1,8 @@
 # 🚀 PWA Quick Reference Cheat Sheet
 
+> **ARCHIVED** (28 Luglio 2026). Preferito tra i 3 doc PWA se serve un cheat sheet. Config live: `vite.config.ts`.  
+> Piano: [../planning/ALIGNED_PLAN.md](../planning/ALIGNED_PLAN.md) · [../reference/README.md](../reference/README.md)
+
 ## 📱 Essential Commands
 
 ```bash

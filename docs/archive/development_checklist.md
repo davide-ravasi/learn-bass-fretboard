@@ -1,11 +1,14 @@
 # Bass Guitar Learning App - Development Checklist
 
+> **ARCHIVED** (28 Luglio 2026). Diario sessioni storiche — progress % inconsistenti e outdated.  
+> Piano corrente: [../planning/ALIGNED_PLAN.md](../planning/ALIGNED_PLAN.md) · Indice archive: [README.md](./README.md)
+
 ## Project Overview
 
 **Goal:** Build a React-based web application to learn bass guitar notes on the fretboard
 **Timeline:** 10 weeks, 30 minutes/day
 **Total Time:** ~35 hours
-**Current Progress:** 80% (8/10 sessions complete)
+**Current Progress:** 80% (8/10 sessions complete) — *stale; do not trust*
 
 ---
 

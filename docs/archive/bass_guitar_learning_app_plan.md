@@ -1,5 +1,8 @@
 # Bass Guitar Learning App - Project Plan
 
+> **ARCHIVED** (28 Luglio 2026). Piano originale con checkbox mai aggiornate.  
+> Sostituito da: [../planning/ALIGNED_PLAN.md](../planning/ALIGNED_PLAN.md)
+
 ## Project Overview
 
 A React-based web application to help learn bass guitar notes on the fretboard with visual aids and audio playback capabilities.
@@ -111,24 +114,24 @@ interface PracticeSettings {
 
 ```
 src/
-├── components/
-│   ├── Fretboard.tsx
-│   ├── NoteDisplay.tsx
-│   ├── Controls.tsx
-│   ├── AudioPlayer.tsx
-│   └── ScoreDisplay.tsx
-├── hooks/
-│   ├── useAudio.ts
-│   ├── useGameState.ts
-│   └── useTimer.ts
-├── data/
-│   ├── notes.ts
-│   └── scales.ts
-├── types/
-│   └── index.ts
-└── utils/
-    ├── audioUtils.ts
-    └── gameUtils.ts
+Ôö£ÔöÇÔöÇ components/
+Ôöé   Ôö£ÔöÇÔöÇ Fretboard.tsx
+Ôöé   Ôö£ÔöÇÔöÇ NoteDisplay.tsx
+Ôöé   Ôö£ÔöÇÔöÇ Controls.tsx
+Ôöé   Ôö£ÔöÇÔöÇ AudioPlayer.tsx
+Ôöé   ÔööÔöÇÔöÇ ScoreDisplay.tsx
+Ôö£ÔöÇÔöÇ hooks/
+Ôöé   Ôö£ÔöÇÔöÇ useAudio.ts
+Ôöé   Ôö£ÔöÇÔöÇ useGameState.ts
+Ôöé   ÔööÔöÇÔöÇ useTimer.ts
+Ôö£ÔöÇÔöÇ data/
+Ôöé   Ôö£ÔöÇÔöÇ notes.ts
+Ôöé   ÔööÔöÇÔöÇ scales.ts
+Ôö£ÔöÇÔöÇ types/
+Ôöé   ÔööÔöÇÔöÇ index.ts
+ÔööÔöÇÔöÇ utils/
+    Ôö£ÔöÇÔöÇ audioUtils.ts
+    ÔööÔöÇÔöÇ gameUtils.ts
 ```
 
 ## Key Implementation Notes
@@ -194,3 +197,4 @@ src/
 
 PROMPT
 I want to build a bass guitar learning app with React. I have a detailed project plan document that outlines the features, timeline, and technical approach. The plan is designed for 30 minutes/day development over 8 weeks. Can you help me scaffold this project?
+

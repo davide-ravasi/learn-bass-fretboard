@@ -1,5 +1,8 @@
 # 🎯 Session 6: PWA Conversion - Session Summary
 
+> **ARCHIVED** (28 Luglio 2026). Session dump celebrativo. Config reale: `vite.config.ts` + `public/manifest.json`.  
+> Cheat sheet preferita in archive: [pwa_quick_reference.md](./pwa_quick_reference.md) · Piano: [../planning/ALIGNED_PLAN.md](../planning/ALIGNED_PLAN.md)
+
 ## 📅 Session Details
 
 - **Date:** August 12, 2025

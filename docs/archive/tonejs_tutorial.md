@@ -1,5 +1,8 @@
 # Tone.js Complete Tutorial: From Basics to Advanced
 
+> **ARCHIVED** (28 Luglio 2026). Scrapbook generico Tone.js — non roadmap prodotto.  
+> Utile per ALIGNED_PLAN A5/C3. Piano: [../planning/ALIGNED_PLAN.md](../planning/ALIGNED_PLAN.md)
+
 ## 🎵 What is Tone.js?
 
 Tone.js is a Web Audio framework for creating interactive music in the browser. It provides:

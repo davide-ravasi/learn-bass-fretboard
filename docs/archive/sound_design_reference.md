@@ -1,5 +1,8 @@
 # 🎵 Sound Design Reference Guide for Tone.js
 
+> **ARCHIVED** (28 Luglio 2026). Scrapbook sound design — non roadmap. Utile per A5/C3.  
+> Piano: [../planning/ALIGNED_PLAN.md](../planning/ALIGNED_PLAN.md)
+
 ## 🎸 How to Find and Modify Sounds
 
 ### **1. Official Tone.js Sources (Limited but Useful)**

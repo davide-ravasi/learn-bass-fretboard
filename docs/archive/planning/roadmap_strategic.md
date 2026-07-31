@@ -1,8 +1,11 @@
 # Strategic Roadmap: Bass Learning App
 
+> **Archivio.** Timeline 8 settimane troppo aggressiva.  
+> Sequenza e gate: [../../planning/ALIGNED_PLAN.md](../../planning/ALIGNED_PLAN.md). Riusa soprattutto i go/no-go.
+
 **Created:** 26 Luglio 2026  
-**Timeline:** 8 settimane (2 mesi)  
-**Goal:** Personal tool di qualità → Commercial MVP ready  
+**Timeline originale:** 8 settimane (non vincolante)  
+**Goal ricalibrato:** imparare costruendo + tool da studio + share se passa qualità  
 **Approach:** Incremental, user-validated, quality-first
 
 ---
