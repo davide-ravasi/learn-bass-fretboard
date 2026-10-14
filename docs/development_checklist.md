@@ -227,14 +227,22 @@
 
 ## 📋 Session 8: Code Improvements & Interface Enhancements
 
-**Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** 🎯 In Progress  
-**Branch:** Separate branch for vertical/landscape layout work
+**Date:** **2026-05 / merge prep 2026-10** | **Status:** ✅ Layout shippato (debiti sotto)  
+**Branch:** `feat/improve-interface-layout` (PR #5)
 
-### Recent progress (resume next day)
-- [x] Vertical fretboard foundation
-- [ ] **Landscape layout** – improving layout when device is horizontal
-- [ ] **Fret dots** – fix position when horizontal (dots were not in the right place)
-- [ ] **Info panel** – move all infos into the info panel (consolidate top bar)
+### Shipped on this branch
+- [x] Horizontal fretboard (column-based neck, CodePen-inspired styling)
+- [x] Fret inlays as column decorations (not brittle absolute dots)
+- [x] Frets as `<button>` with focus-visible; ~44px min width on coarse pointers
+- [x] **Intentional horizontal scroll** on small screens (`min-width: 680px` + `overflow-x: auto`) so frets stay usable — not a bug
+- [x] Feedback moved into info panel area (branch work)
+
+### Debito esplicito (post-merge — non blocca PR #5)
+- [ ] Landscape packing: verify ScoreDisplay + controls on short viewports; compact if needed
+- [ ] Note-label rotation only in landscape (optional polish)
+- [ ] BEM naming pass across App / Fretboard / ScoreDisplay
+- [ ] `touch-action: manipulation`; safe-area; `prefers-reduced-motion`
+- [ ] Broader `aria-label`s when labels are visible
 
 ### Tasks:
 
@@ -273,8 +281,8 @@
   - [ ] Ensure min 44px touch size for frets in both orientations
   - [ ] Adjust `.note-label` spacing (`line-height`, padding or letter-spacing) if cramped
 - [ ] Overflow and layout safety
-  - [ ] Prevent horizontal scrolling; clamp widths; add `overflow-x: hidden` if needed
-  - [ ] Verify ScoreDisplay remains visible and readable in all orientations
+  - [x] Horizontal scroll on neck is **intentional** (usable fret width); do not force `overflow-x: hidden` on fretboard
+  - [ ] Verify ScoreDisplay remains visible and readable in all orientations (post-merge)
 
 #### Nice-to-have (End of Session)
 

@@ -4,6 +4,8 @@
   width: 100%;
   max-width: min(960px, 100vw);
   margin: 0 auto;
+  /* Intentional: neck is wider than small viewports so frets stay tappable;
+     container scrolls horizontally instead of crushing 13 frets. */
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   box-shadow: -2px 3px 10px #1a1b1c;
