@@ -238,7 +238,12 @@
 - [x] Feedback moved into info panel area (branch work)
 
 ### Debito esplicito (post-merge — non blocca PR #5)
-- [ ] Landscape packing: verify ScoreDisplay + controls on short viewports; compact if needed
+
+**P0 — Portrait mobile (smoke tech lead 2026-10-14):**
+- [ ] **Fretboard in portrait resta orizzontale** e sborda a sx/dx (scroll/overflow). Serve **studio valutativo** prima del fix: decidere se (A) neck orizzontale + scroll accettabile, (B) layout verticale in portrait, (C) altro. Non patchare CSS a caso senza decisione UX.
+
+**Altri debiti:**
+- [ ] Landscape packing: ScoreDisplay + controls su viewport corti; compact se serve
 - [ ] Note-label rotation only in landscape (optional polish)
 - [ ] BEM naming pass across App / Fretboard / ScoreDisplay
 - [ ] `touch-action: manipulation`; safe-area; `prefers-reduced-motion`
