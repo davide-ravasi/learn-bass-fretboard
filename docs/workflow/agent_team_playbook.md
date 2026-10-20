@@ -3,7 +3,7 @@
 **Purpose:** Reference for humans and Cursor agents running team-style work on this repo (and reusable on other projects).  
 **Primary goal:** Train the human as **tech lead**.  
 **Secondary goal:** Practice a reliable multi-agent workflow.  
-**Last updated:** 2026-10-15  
+**Last updated:** 2026-10-20  
 **Pilot:** PR #5 (`feat/improve-interface-layout`) — Option A fix-first merge prep.
 
 ---
@@ -26,7 +26,7 @@
 ## 2. Objectives (order matters)
 
 1. **Human learns tech lead habits** — clear options, evidence-based decisions, explicit debt.
-2. **Validate multi-agent workflow** — parallel review/quality/fix with a single aggregated report.
+2. **Validate multi-agent workflow** — parallel review/quality/fix with an aggregated report that preserves disagreements when present.
 3. Product delivery — only after 1–2 are respected for the session.
 
 If the orchestrator sees a weak lead move (merge without criteria, unbounded scope, “trust the agents”), it must give short corrective feedback: what was weak, why, better alternative.
@@ -42,16 +42,29 @@ Orchestrator: break into 2–3 agent tasks (not 5+)
         ↓
 Parallel agents (Review + Quality [+ Smoke])
         ↓
-Orchestrator: aggregate → GO / NO-GO / FIX-FIRST
+Orchestrator: aggregate (preserve dissent) → GO / NO-GO / FIX-FIRST + open trade-offs
         ↓
-Tech Lead: chooses A/B/C (or variant) + why
+Tech Lead: chooses among real alternatives + why
         ↓
 If FIX-FIRST: Fix agent(s) → Quality re-check → Tech Lead smoke
         ↓
 Tech Lead merges (or rejects)
         ↓
-Document outcomes / debt (checklist, PR comment)
+Document outcomes / debt (checklist, PR comment); Decision Journal if meaningful fork
 ```
+
+### When agents disagree
+
+A single aggregated verdict must **not** erase divergence.
+
+The Orchestrator should:
+
+1. Keep each agent’s **evidence + rationale** (short quotes / bullets).
+2. Separate **true disagreement** (same question, different conclusions) from **different lenses** (e.g. lint FAIL vs layout FIX-FIRST — both can be true).
+3. Surface open trade-offs to the Tech Lead (“Quality says merge-blocked on lint; Review says UX debt only”).
+4. Propose an extra check only if it would change the decision (not busywork).
+
+**Human Tech Lead still decides.** Related skill to leading people; not the same as managing humans—no people ceremonies here.
 
 ### First-time tip for the Tech Lead
 
@@ -73,7 +86,10 @@ Useful prompts:
 
 ## 4. Decision options template (merge / ship)
 
-Present exactly three options unless the lead asks for more:
+**A/B/C is a useful default, not a hard rule.** Prefer 2–3 real alternatives.
+Do not invent a third option only to fill the template. One clear path + “do nothing / defer” can be enough when there is no meaningful fork.
+
+Default labels when they fit:
 
 | Option | Meaning |
 |--------|---------|
@@ -86,6 +102,18 @@ Always attach:
 - Quality gates status (lint/build)
 - Preview URL if any
 - Explicit out-of-scope list
+
+### Severity (P0 / P1 / P2)
+
+Classify by **user impact + release risk**, not by how visible or hard the code is.
+
+| Level | Meaning (practical) |
+|-------|---------------------|
+| **P0** | Breaks core use, wrong/dangerous behavior, or blocks a release gate we treat as required (e.g. build fail). No acceptable workaround for intended use. |
+| **P1** | Real friction or defect in a common path; workaround exists or scope can ship with **explicit debt**. |
+| **P2** | Polish, consistency, nice-to-have; does not change the merge/ship call by itself. |
+
+If unsure: ask “Can I honestly use/ship this for personal practice with this open?” → No = P0/P1; Yes with annoyance = P1/P2.
 
 ---
 
@@ -145,6 +173,24 @@ Fretboard stays horizontal and overflows. Needs evaluative UX study
 before CSS fix (options A/B/C). Do not drive-by patch.
 ```
 
+### Decision Journal (lightweight, optional)
+
+Use for **meaningful** forks: real alternatives, non-obvious trade-offs, or architectural/product calls.
+Skip for trivial PR chores (typo, pure lint rename, docs typo).
+
+Prefer a short PR comment or a bullet under an existing checklist—**do not** duplicate the full PR description.
+
+Template:
+
+- **Decisione:** …
+- **Evidenze:** … (commands, smoke notes, constraints)
+- **Alternative considerate:** … (what we rejected and why)
+- **Motivazione:** … (trade-offs)
+- **Risultato osservato:** … or `da verificare`
+- **Lezione appresa:** …
+
+Success check: after the call, the Tech Lead can explain *what / why / evidence / lesson* in a few lines.
+
 ---
 
 ## 8. Pilot retrospective (PR #5)
@@ -180,13 +226,15 @@ Secondary goal: run multi-agent review/quality/fix as needed.
 I decide GO / NO-GO / FIX-FIRST options and merge.
 Do not expand scope past what I approve.
 Always separate facts / risks / opinions / severity.
+If agents disagree, show both sides; I decide.
+Use Decision Journal only for meaningful forks.
 ```
 
 ---
 
 ## 10. Reuse on other projects
 
-Keep the same roles and A/B/C template. Replace only:
+Keep the same roles and decision habits (flexible alternatives, severity, optional Decision Journal). Replace only:
 
 - Quality commands (lint/test/build)
 - Smoke checklist (product-specific)
