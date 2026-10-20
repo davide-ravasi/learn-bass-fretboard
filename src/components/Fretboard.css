@@ -1,174 +1,273 @@
-.fretboard {
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: repeat(4, 1fr); /* 4 strings */
-  gap: 1px;
-  background-color: #333;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
+/* Lato loaded from index.html; CodePen-inspired tokens (FlexBox Bass Fretboard) */
 .fretboard__container {
   position: relative;
+  width: 100%;
+  max-width: min(960px, 100vw);
+  margin: 0 auto;
+  /* Intentional: neck is wider than small viewports so frets stay tappable;
+     container scrolls horizontally instead of crushing 13 frets. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: -2px 3px 10px #1a1b1c;
+  border-radius: 4px;
 }
 
-.string {
+.fretboard--horizontal {
+  --body-bg-dark: #1a1b1c;
+  --fretboard-bg: #be975b;
+  --fretboard-bg-deep: #8a6a42;
+  --dot-teal: #008880;
+  --dot-teal-dark: #005c52;
+  --fb-h: clamp(220px, 38vw, 300px);
+  --str-h: 10px;
+  --str-top-1: calc(var(--fb-h) * 0.125 - var(--str-h) / 2);
+  --str-top-2: calc(var(--fb-h) * 0.375 - var(--str-h) / 2);
+  --str-top-3: calc(var(--fb-h) * 0.625 - var(--str-h) / 2);
+  --str-top-4: calc(var(--fb-h) * 0.875 - var(--str-h) / 2);
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: var(--fb-h);
+  height: var(--fb-h);
+  /* Wider than most phones — parent scrolls horizontally for usable fret width */
+  min-width: 680px;
+  font-family: "Lato", system-ui, sans-serif;
+
+  background-color: var(--fretboard-bg);
+  background-image:
+    linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.08) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(74, 52, 28, 0.12) 0 2px,
+      transparent 2px 14px
+    ),
+    linear-gradient(180deg, #c9a068 0%, var(--fretboard-bg) 45%, #a67f45 100%);
+}
+
+/* Sopra i bordi tasto (linee verticali); pointer-events none → i click passano alle celle */
+.fretboard-strings {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.fretboard-string {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--str-h);
+  background: linear-gradient(#eee, #999);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.28);
+  border-radius: 2px;
+}
+
+.fretboard-string--s4 {
+  top: var(--str-top-1);
+}
+
+.fretboard-string--s3 {
+  top: var(--str-top-2);
+}
+
+.fretboard-string--s2 {
+  top: var(--str-top-3);
+}
+
+.fretboard-string--s1 {
+  top: var(--str-top-4);
+}
+
+.fret-column {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fret-column--nut {
+  flex: 0 0 clamp(52px, 14vw, 88px);
+  background: #161717;
+  border-right: 8px solid #c8c8c8;
+  box-shadow:
+    inset -6px 0 10px rgba(255, 255, 255, 0.12),
+    2px 0 4px var(--body-bg-dark);
+}
+
+.fret-column--fretted {
+  border-right: 6px solid #8a8a8a;
+  box-shadow:
+    4px 0 5px rgba(0, 0, 0, 0.12),
+    inset -1px 0 0 rgba(255, 255, 255, 0.12);
+  background: transparent;
+}
+
+.fret-column__inlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--fretboard-bg-deep);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.12);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fret-column__inlay--octave-up {
+  top: 25%;
+}
+
+.fret-column__inlay--octave-down {
+  top: 75%;
 }
 
 .fret-position {
   position: relative;
-  background-color: #f5f5f5;
-  color: #333;
-  border: 1px solid #ddd;
-  min-height: 40px;
+  z-index: 1;
+  flex: 1 1 0;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #f0f0f0;
+  font: inherit;
   cursor: pointer;
-  transition: all 0.2s ease;
   user-select: none;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    color 0.15s ease;
 }
 
-/* Open string styling (fret 0) */
-.fret-position.open-string {
-  min-height: 25px; /* Thinner than regular frets */
-  font-size: 0.9em; /* Slightly smaller text */
-  opacity: 0.8; /* More subtle appearance */
-  border-width: 1px; /* Thinner border */
-  background-color: #e8e8e8; /* Slightly different background */
-}
-
-/* Fretboard dots */
-.fret-position__dot {
-  position: absolute;
-  top: 50%;
-  left: -1px;
-  transform: translate(-50%, -50%);
-  content: "";
-  display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #333;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-  z-index: 4;
-}
-
-/* Hover effects */
 .fret-position:hover {
-  background-color: #e0e0e0;
-  transform: scale(1.02);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
-.fret-position.open-string:hover {
-  min-height: 28px; /* Slightly thicker on hover */
-  opacity: 1; /* Full opacity on hover */
+.fret-position:focus-visible {
+  outline: 2px solid var(--dot-teal);
+  outline-offset: -2px;
 }
 
-.fret-position:active {
-  transform: scale(0.98);
-  background-color: #d0d0d0;
+.fret-column--nut .fret-position:hover {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Game state styling */
+.fret-position.open-string {
+  opacity: 0.95;
+}
+
+.note-label {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(0.7rem, 2.2vw, 0.95rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Teal circle when note name is shown (CodePen .active look) */
+.fret-position:not(.open-string) .note-label:not(:empty) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 50%;
+  border: 2px solid #005751;
+  background: var(--dot-teal);
+  color: var(--dot-teal-dark);
+  font-weight: 400;
+}
+
+.fret-column--nut .note-label:not(:empty) {
+  border-radius: 6px;
+  min-width: unset;
+  min-height: unset;
+  background: rgba(0, 136, 128, 0.85);
+  color: #022;
+}
+
+/* Game state */
 .fret-position.highlighted {
-  border: 1px solid #bbb;
-  background-color: #d7d1fc !important;
+  background-color: rgba(215, 209, 252, 0.35) !important;
+  box-shadow: inset 0 0 0 1px rgba(180, 170, 255, 0.6);
+}
+
+.fret-column--nut .fret-position.highlighted {
+  background-color: rgba(215, 209, 252, 0.22) !important;
 }
 
 .fret-position.clicked {
-  background-color: #4caf50 !important;
-  color: white !important;
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+  background-color: rgba(76, 175, 80, 0.55) !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.85);
 }
 
 .fret-position.correct {
-  background-color: #4caf50 !important; /* Green for correct */
-  color: white !important;
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
-  animation: correctPulse 0.6s ease-in-out;
+  background-color: rgba(76, 175, 80, 0.75) !important;
+  color: #fff !important;
+  animation: correctGlow 0.6s ease-in-out;
 }
 
 .fret-position.incorrect {
-  background-color: #f44336 !important; /* Red for incorrect */
-  color: white !important;
-  transform: scale(0.95);
-  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
-  animation: incorrectShake 0.6s ease-in-out;
+  background-color: rgba(244, 67, 54, 0.7) !important;
+  color: #fff !important;
+  animation: incorrectShake 0.55s ease-in-out;
 }
 
-@media (max-width: 896px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
-  .fretboard {
-    display: flex; /* switch from grid to flex */
-    flex-direction: column; /* strings stacked vertically */
-    flex-flow: column-reverse; /* reverse the string to be right */
-    gap: 2px;
-  }
-
-  .string {
-    flex-direction: row; /* frets go left→right on each string */
-  }
-
-  .fret-position {
-    min-width: 44px; /* touch-friendly */
-  }
-
-  .fret-position__dot:nth-child(2),
-  .fret-position__dot:nth-child(3),
-  .fret-position__dot:nth-child(4),
-  .fret-position__dot:nth-child(5) {
-    top: 105px;
-  }
-
-  .fret-position__dot:nth-child(2) {
-    left: 180px;
-  }
-
-  .fret-position__dot:nth-child(3) {
-    left: 270px;
-  }
-
-  .fret-position__dot:nth-child(4) {
-    left: 360px;
-  }
-
-  .fret-position__dot:nth-child(5) {
-    left: 450px;
-  }
-
-  .note-label {
-    display: inline-block;
-    line-height: 1;
-  }
+.fret-position.correct .note-label:not(:empty),
+.fret-position.incorrect .note-label:not(:empty),
+.fret-position.clicked .note-label:not(:empty) {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
 }
 
-/* Animations */
-@keyframes correctPulse {
+@keyframes correctGlow {
   0%,
   100% {
-    transform: scale(1.1);
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
   }
   50% {
-    transform: scale(1.2);
+    box-shadow: 0 0 14px 4px rgba(76, 175, 80, 0.45);
   }
 }
 
 @keyframes incorrectShake {
   0%,
   100% {
-    transform: translateX(0) scale(0.95);
+    transform: translateX(0);
   }
   25% {
-    transform: translateX(-2px) scale(0.95);
+    transform: translateX(-3px);
   }
   75% {
-    transform: translateX(2px) scale(0.95);
+    transform: translateX(3px);
+  }
+}
+
+@media (max-width: 640px), (pointer: coarse) {
+  .fret-column--fretted {
+    min-width: 44px;
   }
 }

@@ -227,7 +227,27 @@
 
 ## 📋 Session 8: Code Improvements & Interface Enhancements
 
-**Date:** **\_\_\_\_** | **Duration:** 30 min | **Status:** 🎯 Next Session
+**Date:** **2026-05 / merge prep 2026-10** | **Status:** ✅ Layout shippato (debiti sotto)  
+**Branch:** `feat/improve-interface-layout` (PR #5)
+
+### Shipped on this branch
+- [x] Horizontal fretboard (column-based neck, CodePen-inspired styling)
+- [x] Fret inlays as column decorations (not brittle absolute dots)
+- [x] Frets as `<button>` with focus-visible; ~44px min width on coarse pointers
+- [x] **Intentional horizontal scroll** on small screens (`min-width: 680px` + `overflow-x: auto`) so frets stay usable — not a bug
+- [x] Feedback moved into info panel area (branch work)
+
+### Debito esplicito (post-merge — non blocca PR #5)
+
+**P0 — Portrait mobile (smoke tech lead 2026-10-14):**
+- [ ] **Fretboard in portrait resta orizzontale** e sborda a sx/dx (scroll/overflow). Serve **studio valutativo** prima del fix: decidere se (A) neck orizzontale + scroll accettabile, (B) layout verticale in portrait, (C) altro. Non patchare CSS a caso senza decisione UX.
+
+**Altri debiti:**
+- [ ] Landscape packing: ScoreDisplay + controls su viewport corti; compact se serve
+- [ ] Note-label rotation only in landscape (optional polish)
+- [ ] BEM naming pass across App / Fretboard / ScoreDisplay
+- [ ] `touch-action: manipulation`; safe-area; `prefers-reduced-motion`
+- [ ] Broader `aria-label`s when labels are visible
 
 ### Tasks:
 
@@ -252,6 +272,31 @@
 4. Improve component reusability
 5. Add proper TypeScript types for helpers
 
+#### Next Steps (Agreed)
+
+- [ ] Adopt BEM naming across UI components
+  - [ ] Map current classes → BEM (`.fretboard`, `.fretboard__string`, `.fretboard__fret`, modifiers for clicked/highlighted/correct/incorrect/open/dot)
+  - [ ] Update JSX classNames in `Fret.tsx`, `Fretboard.tsx`, `ScoreDisplay.tsx` to match
+  - [ ] Keep indentation and formatting unchanged; avoid unrelated refactors
+- [ ] Mobile landscape behavior
+  - [ ] Horizontal fretboard in mobile landscape
+  - [ ] Rotate only note labels in landscape (use `.note-label` span + media query)
+  - [ ] Keep portrait and desktop unrotated
+- [ ] Touch targets and spacing
+  - [ ] Ensure min 44px touch size for frets in both orientations
+  - [ ] Adjust `.note-label` spacing (`line-height`, padding or letter-spacing) if cramped
+- [ ] Overflow and layout safety
+  - [x] Horizontal scroll on neck is **intentional** (usable fret width); do not force `overflow-x: hidden` on fretboard
+  - [ ] Verify ScoreDisplay remains visible and readable in all orientations (post-merge)
+
+#### Nice-to-have (End of Session)
+
+- [ ] Tablet-specific rules (iPad landscape may keep labels unrotated if cramped)
+- [ ] Reduced motion support: disable animations with `@media (prefers-reduced-motion: reduce)`
+- [ ] Safe areas for PWA (iOS notches): `padding: env(safe-area-inset-*)`
+- [ ] 12th-fret double dot styling
+- [ ] Document BEM naming patterns and include quick reference in `docs/`
+
 ### Code Improvements:
 
 - [ ] **Component Separation**: Break down App.tsx into smaller components
@@ -271,6 +316,8 @@
   - [ ] Proper touch targets (44px minimum) for mobile
   - [ ] Media queries for desktop/tablet/mobile breakpoints
   - [ ] Test across different screen sizes and orientations
+
+  - [ ] Mobile landscape: keep fretboard horizontal; rotate note labels only
 
 - [ ] **BEM CSS Naming Convention**: Refactor all CSS to use standardized BEM methodology
 

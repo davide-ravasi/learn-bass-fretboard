@@ -33,24 +33,18 @@ export const Fret = ({
     "open-string": isOpenString(note.fret),
   });
 
-  const isFretDotVisible =
-    note.string === 3 &&
-    (note.fret === 3 ||
-      note.fret === 5 ||
-      note.fret === 7 ||
-      note.fret === 9 ||
-      note.fret === 12);
-
   return (
-    <div
+    <button
+      type="button"
       className={fretboardClasses}
-      key={`${note.string}-${note.fret}`}
       data-string={note.string}
       data-fret={note.fret}
+      aria-label={
+        areHiddenNotes ? `String ${note.string}, fret ${note.fret}` : undefined
+      }
       onClick={() => handleNoteClick(note)}
     >
-      <div className="note-label">{!areHiddenNotes && note.name}</div>
-      {isFretDotVisible && <div className="fret-position__dot"></div>}
-    </div>
+      <span className="note-label">{!areHiddenNotes && note.name}</span>
+    </button>
   );
 };

@@ -106,6 +106,12 @@
   margin-bottom: 15px;
 }
 
+@media (max-width: 896px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  .info-panel {
+    flex-direction: row;
+  }
+}
+
 .info-panel h3 {
   font-size: 16px;
   font-weight: bold;

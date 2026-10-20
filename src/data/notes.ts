@@ -29,7 +29,7 @@ const getNoteName = (openNote: string, fret: number) => {
   return noteNames[noteIndex];
 };
 
-// Generate all notes for a 4-string bass up to 12 frets
+// Generate all notes for a 4-string bass: open string (fret 0) through 12th fret (fret 12) → 13 positions × 4 strings = 52 notes
 // case usage
 // generateBassNotes() // [
 //   { name: "E", string: 1, fret: 0, frequency: 41.2 },
@@ -44,7 +44,7 @@ export const generateBassNotes = (): Note[] => {
     const openNote = STRING_TUNINGS[string - 1];
     const baseFreq = OPEN_FREQUENCIES[string - 1];
 
-    for (let fret = 0; fret <= 11; fret++) {
+    for (let fret = 0; fret <= 12; fret++) {
       const noteName = getNoteName(openNote, fret);
       const frequency = baseFreq * Math.pow(2, fret / 12);
 
