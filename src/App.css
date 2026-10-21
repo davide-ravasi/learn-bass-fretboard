@@ -8,10 +8,20 @@
   justify-content: flex-start;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* Option C: dashboard stays top; fretboard container scrolls inside remaining height */
 .app-content {
-  /* Rotation removed - will implement proper flexbox layout later */
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch;
 }
 
 .start-button {
@@ -104,6 +114,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 896px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {

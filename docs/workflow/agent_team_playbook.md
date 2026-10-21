@@ -152,8 +152,11 @@ After Option A approval:
 
 - Fix agent: only listed files/items
 - Quality agent: re-run gates
+- **Senior FE review agent (pre-commit gate):** review uncommitted diff → `APPROVE` / `REQUEST_CHANGES`. Fix blockers; re-review if needed. **Do not commit until APPROVE.**
 - Orchestrator: commit, push, PR comment/body update
 - Tech Lead: final smoke + merge
+
+This uses a normal subagent (no extra Cursor skill pack). Same Review role as §1; timing is specifically **before commit**, not only before merge.
 
 ---
 
