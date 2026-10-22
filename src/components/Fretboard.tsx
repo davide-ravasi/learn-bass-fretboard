@@ -49,7 +49,13 @@ export const Fretboard = ({
 
   return (
     <div className="fretboard__container">
-      <div className="fretboard fretboard--horizontal">
+      {/*
+        Adaptive neck (Option C):
+        - portrait/narrow: CSS stacks frets (nut→12 top→bottom)
+        - landscape/wide: horizontal neck (nut→12 left→right)
+        Same DOM; orientation via Fretboard.css media queries.
+      */}
+      <div className="fretboard fretboard--neck">
         <div className="fretboard-strings" aria-hidden="true">
           {STRING_ORDER.map((stringNum) => (
             <div
