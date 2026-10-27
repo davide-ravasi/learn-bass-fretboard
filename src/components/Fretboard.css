@@ -279,7 +279,7 @@
 }
 
 /* —— Portrait / narrow: vertical neck (nut → 12 top→bottom) ——
-   Strings left→right (G D A E). Prefer fitting; overflow-y if needed. */
+   Strings left→right E→A→D→G (thick→thin). Landscape keeps G→E top→bottom. */
 @media (max-width: 896px) and (orientation: portrait) {
   .fretboard__container {
     overflow-x: hidden;
@@ -292,10 +292,11 @@
 
   .fretboard--neck {
     --fb-w: 100%;
-    --str-left-1: calc(12.5% - var(--str-w-4) / 2);
-    --str-left-2: calc(37.5% - var(--str-w-3) / 2);
-    --str-left-3: calc(62.5% - var(--str-w-2) / 2);
-    --str-left-4: calc(87.5% - var(--str-w-1) / 2);
+    /* Visual L→R after row-reverse: E(s1), A(s2), D(s3), G(s4) */
+    --str-left-1: calc(12.5% - var(--str-w-1) / 2);
+    --str-left-2: calc(37.5% - var(--str-w-2) / 2);
+    --str-left-3: calc(62.5% - var(--str-w-3) / 2);
+    --str-left-4: calc(87.5% - var(--str-w-4) / 2);
 
     flex-direction: column;
     align-items: stretch;
@@ -320,7 +321,8 @@
   }
 
   .fret-column {
-    flex-direction: row;
+    /* DOM order is G,D,A,E — reverse so E (thick) is left, G (thin) right */
+    flex-direction: row-reverse;
     flex: 1 1 0;
     width: 100%;
     min-width: 0;
@@ -359,28 +361,28 @@
     height: auto;
   }
 
-  .fretboard-string--s4 {
+  .fretboard-string--s1 {
     top: 0;
     left: var(--str-left-1);
-    width: var(--str-w-4);
-  }
-
-  .fretboard-string--s3 {
-    top: 0;
-    left: var(--str-left-2);
-    width: var(--str-w-3);
+    width: var(--str-w-1);
   }
 
   .fretboard-string--s2 {
     top: 0;
-    left: var(--str-left-3);
+    left: var(--str-left-2);
     width: var(--str-w-2);
   }
 
-  .fretboard-string--s1 {
+  .fretboard-string--s3 {
+    top: 0;
+    left: var(--str-left-3);
+    width: var(--str-w-3);
+  }
+
+  .fretboard-string--s4 {
     top: 0;
     left: var(--str-left-4);
-    width: var(--str-w-1);
+    width: var(--str-w-4);
   }
 
   /* Inlays: center of fret row; octave markers along string axis (X) */

@@ -8,6 +8,13 @@
   color: #333;
 }
 
+@media (max-width: 896px) and (orientation: portrait) {
+  .score-display {
+    padding: 6px 8px;
+    margin: 0;
+  }
+}
+
 .stats {
   display: flex;
   flex-wrap: wrap;

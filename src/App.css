@@ -118,6 +118,27 @@
   flex-shrink: 0;
 }
 
+/* Portrait: reclaim space between dashboard and neck (reduce vertical scroll) */
+@media (max-width: 896px) and (orientation: portrait) {
+  .app {
+    padding: 0.35rem;
+  }
+
+  .info-panel {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .feedback {
+    margin-top: 4px;
+    min-height: 0;
+  }
+
+  .feedback:empty {
+    display: none;
+  }
+}
+
 @media (max-width: 896px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
   .info-panel {
     flex-direction: row;
