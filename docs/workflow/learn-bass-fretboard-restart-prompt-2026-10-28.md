@@ -16,7 +16,7 @@ Dimmi in 5–8 righe: stato branch/PR, **prossima task**, e proponi 1 obiettivo 
 | App | Fretonomy — tool personale per note + Major/Minor pentatonic (uso personale first; commerciale later) |
 | Branch lavoro | `cursor/mobile-adaptive-fretboard-2c87` |
 | PR aperta | [#8](https://github.com/davide-ravasi/learn-bass-fretboard/pull/8) → `master` |
-| Ultimo commit noto | `473eb91` — next-task stacking annotato |
+| Ultimo commit noto | `5eb0131` — restart prompt PC migration |
 | Base preferita per nuovi PR | `master` (prefisso branch `cursor/…-2c87`) |
 
 Sessione Cloud precedente (storico, opzionale):  
