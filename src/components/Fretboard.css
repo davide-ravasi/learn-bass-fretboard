@@ -56,11 +56,16 @@
     linear-gradient(180deg, #c9a068 0%, var(--fretboard-bg) 45%, #a67f45 100%);
 }
 
-/* Strings behind note labels (smoke: notes were covered by z-index: 4) */
+/* Stacking: wood, fret bars, inlays, and cell fills stay under the strings.
+   Only .note-label (z-index: 3) paints above this overlay (z-index: 1).
+   .fret-column and .fret-position must not create a stacking context
+   (no z-index other than auto, no opacity < 1, no transform/translate,
+   no filter, no will-change). pointer-events is set on each string too:
+   the stroke is the topmost box through the middle of every cell. */
 .fretboard-strings {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -71,6 +76,7 @@
   background: linear-gradient(#eee, #999);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.28);
   border-radius: 2px;
+  pointer-events: none;
 }
 
 .fretboard-string--s4 {
@@ -95,7 +101,6 @@
 
 .fret-column {
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   flex: 1 1 0;
@@ -145,7 +150,7 @@
 
 .fret-position {
   position: relative;
-  z-index: 2;
+  left: 0;
   flex: 1 1 0;
   min-height: 0;
   display: flex;
@@ -176,10 +181,6 @@
 
 .fret-column--nut .fret-position:hover {
   background-color: rgba(255, 255, 255, 0.08);
-}
-
-.fret-position.open-string {
-  opacity: 0.95;
 }
 
 .note-label {
@@ -262,13 +263,13 @@
 @keyframes incorrectShake {
   0%,
   100% {
-    transform: translateX(0);
+    left: 0;
   }
   25% {
-    transform: translateX(-3px);
+    left: -3px;
   }
   75% {
-    transform: translateX(3px);
+    left: 3px;
   }
 }
 
