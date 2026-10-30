@@ -240,7 +240,18 @@
 ### Debito esplicito (post-merge — non blocca PR #5)
 
 **P0 — Portrait mobile (smoke tech lead 2026-10-14):**
-- [ ] **Fretboard in portrait resta orizzontale** e sborda a sx/dx (scroll/overflow). Serve **studio valutativo** prima del fix: decidere se (A) neck orizzontale + scroll accettabile, (B) layout verticale in portrait, (C) altro. Non patchare CSS a caso senza decisione UX.
+- [x] **Decisione 2026-10-21 (Option C):** portrait/narrow = neck verticale (nut in alto); landscape/wide = orizzontale; dashboard sempre in alto; scroll verticale ok se 13 frets non stanno. Implementazione su branch `cursor/mobile-adaptive-fretboard-2c87`.
+
+#### Decision Journal (Option C)
+- **Decisione:** Adaptive fretboard Option C (vert portrait / horiz landscape).
+- **Evidenze:** smoke phone (poco neck in portrait); design study + FE study; TL preferenza indicatori in alto.
+- **Alternative:** A keep scroll-only; B always vertical — scartate (A UX poor; B landscape debole).
+- **Motivazione:** miglior metafora per posture + costo accettato vs dual layout.
+- **Risultato osservato:** smoke TL ok-ish (Option C usable); residual gap/chrome + string order addressed in follow-ups. Accept temporary “frets/labels above strings” for readable Show Notes.
+- **Lezione:** chiarire “nut”; severità P0/P1 non blocca la scelta prodotto; stacking realismo vs leggibilità = debito esplicito.
+
+**Prossima task (al ricollegamento TL):**
+- [ ] **Stacking realistico del neck:** legno → barre tasti → corde → **solo** etichette nota sopra. Oggi celle/tasti stanno davanti alle corde (compromesso Show Notes). Non drive-by senza smoke.
 
 **Altri debiti:**
 - [ ] Landscape packing: ScoreDisplay + controls su viewport corti; compact se serve

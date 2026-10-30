@@ -98,9 +98,11 @@ function App() {
               <button onClick={handleToggleNotes}>
                 {areHiddenNotes ? "Show Notes" : "Hide Notes"}
               </button>
-              <div className={`feedback ${feedback.type}`}>
-                {feedback.message}
-              </div>
+              {feedback.message ? (
+                <div className={`feedback ${feedback.type ?? ""}`}>
+                  {feedback.message}
+                </div>
+              ) : null}
             </div>
             <Fretboard
               handleNoteClick={handleNoteClick}

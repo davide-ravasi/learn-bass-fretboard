@@ -1,29 +1,35 @@
-/* Lato loaded from index.html; CodePen-inspired tokens (FlexBox Bass Fretboard) */
+/* Adaptive neck: horizontal (default / landscape) + vertical (portrait mobile).
+   Option C — Tech Lead 2026-10-21: nut at top in portrait; vertical scroll OK. */
+
 .fretboard__container {
   position: relative;
   width: 100%;
-  max-width: min(960px, 100vw);
+  max-width: min(960px, 100%);
   margin: 0 auto;
-  /* Intentional: neck is wider than small viewports so frets stay tappable;
-     container scrolls horizontally instead of crushing 13 frets. */
-  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   box-shadow: -2px 3px 10px #1a1b1c;
   border-radius: 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
-.fretboard--horizontal {
+/* —— Shared tokens / horizontal neck (desktop + landscape) —— */
+.fretboard--neck {
   --body-bg-dark: #1a1b1c;
   --fretboard-bg: #be975b;
   --fretboard-bg-deep: #8a6a42;
   --dot-teal: #008880;
   --dot-teal-dark: #005c52;
   --fb-h: clamp(220px, 38vw, 300px);
-  --str-h: 10px;
-  --str-top-1: calc(var(--fb-h) * 0.125 - var(--str-h) / 2);
-  --str-top-2: calc(var(--fb-h) * 0.375 - var(--str-h) / 2);
-  --str-top-3: calc(var(--fb-h) * 0.625 - var(--str-h) / 2);
-  --str-top-4: calc(var(--fb-h) * 0.875 - var(--str-h) / 2);
+  /* G (high) → E (low): thinner to thicker for orientation */
+  --str-w-4: 4px;
+  --str-w-3: 6px;
+  --str-w-2: 8px;
+  --str-w-1: 11px;
+  --str-top-1: calc(var(--fb-h) * 0.125 - var(--str-w-4) / 2);
+  --str-top-2: calc(var(--fb-h) * 0.375 - var(--str-w-3) / 2);
+  --str-top-3: calc(var(--fb-h) * 0.625 - var(--str-w-2) / 2);
+  --str-top-4: calc(var(--fb-h) * 0.875 - var(--str-w-1) / 2);
 
   position: relative;
   display: flex;
@@ -31,7 +37,6 @@
   align-items: stretch;
   min-height: var(--fb-h);
   height: var(--fb-h);
-  /* Wider than most phones — parent scrolls horizontally for usable fret width */
   min-width: 680px;
   font-family: "Lato", system-ui, sans-serif;
 
@@ -51,11 +56,16 @@
     linear-gradient(180deg, #c9a068 0%, var(--fretboard-bg) 45%, #a67f45 100%);
 }
 
-/* Sopra i bordi tasto (linee verticali); pointer-events none → i click passano alle celle */
+/* Stacking: wood, fret bars, inlays, and cell fills stay under the strings.
+   Only .note-label (z-index: 3) paints above this overlay (z-index: 1).
+   .fret-column and .fret-position must not create a stacking context
+   (no z-index other than auto, no opacity < 1, no transform/translate,
+   no filter, no will-change). pointer-events is set on each string too:
+   the stroke is the topmost box through the middle of every cell. */
 .fretboard-strings {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -63,31 +73,34 @@
   position: absolute;
   left: 0;
   right: 0;
-  height: var(--str-h);
   background: linear-gradient(#eee, #999);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.28);
   border-radius: 2px;
+  pointer-events: none;
 }
 
 .fretboard-string--s4 {
   top: var(--str-top-1);
+  height: var(--str-w-4);
 }
 
 .fretboard-string--s3 {
   top: var(--str-top-2);
+  height: var(--str-w-3);
 }
 
 .fretboard-string--s2 {
   top: var(--str-top-3);
+  height: var(--str-w-2);
 }
 
 .fretboard-string--s1 {
   top: var(--str-top-4);
+  height: var(--str-w-1);
 }
 
 .fret-column {
   position: relative;
-  z-index: 0;
   display: flex;
   flex-direction: column;
   flex: 1 1 0;
@@ -137,7 +150,7 @@
 
 .fret-position {
   position: relative;
-  z-index: 1;
+  left: 0;
   flex: 1 1 0;
   min-height: 0;
   display: flex;
@@ -170,22 +183,17 @@
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-.fret-position.open-string {
-  opacity: 0.95;
-}
-
 .note-label {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   font-size: clamp(0.7rem, 2.2vw, 0.95rem);
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1.2;
   text-align: center;
   pointer-events: none;
 }
 
-/* Teal circle when note name is shown (CodePen .active look) */
 .fret-position:not(.open-string) .note-label:not(:empty) {
   display: flex;
   align-items: center;
@@ -196,8 +204,8 @@
   border-radius: 50%;
   border: 2px solid #005751;
   background: var(--dot-teal);
-  color: var(--dot-teal-dark);
-  font-weight: 400;
+  color: #fff;
+  font-weight: 700;
 }
 
 .fret-column--nut .note-label:not(:empty) {
@@ -205,10 +213,9 @@
   min-width: unset;
   min-height: unset;
   background: rgba(0, 136, 128, 0.85);
-  color: #022;
+  color: #fff;
 }
 
-/* Game state */
 .fret-position.highlighted {
   background-color: rgba(215, 209, 252, 0.35) !important;
   box-shadow: inset 0 0 0 1px rgba(180, 170, 255, 0.6);
@@ -256,17 +263,160 @@
 @keyframes incorrectShake {
   0%,
   100% {
-    transform: translateX(0);
+    left: 0;
   }
   25% {
-    transform: translateX(-3px);
+    left: -3px;
   }
   75% {
-    transform: translateX(3px);
+    left: 3px;
   }
 }
 
 @media (max-width: 640px), (pointer: coarse) {
+  .fret-column--fretted {
+    min-width: 44px;
+  }
+}
+
+/* —— Portrait / narrow: vertical neck (nut → 12 top→bottom) ——
+   Strings left→right E→A→D→G (thick→thin). Landscape keeps G→E top→bottom. */
+@media (max-width: 896px) and (orientation: portrait) {
+  .fretboard__container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: 100%;
+  }
+
+  .fretboard--neck {
+    --fb-w: 100%;
+    /* Visual L→R after row-reverse: E(s1), A(s2), D(s3), G(s4) */
+    --str-left-1: calc(12.5% - var(--str-w-1) / 2);
+    --str-left-2: calc(37.5% - var(--str-w-2) / 2);
+    --str-left-3: calc(62.5% - var(--str-w-3) / 2);
+    --str-left-4: calc(87.5% - var(--str-w-4) / 2);
+
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    /* Prefer showing all frets; shrink rows but keep ~44px floor via positions */
+    background-image:
+      linear-gradient(
+        15deg,
+        rgba(255, 255, 255, 0.06) 0%,
+        transparent 40%,
+        rgba(0, 0, 0, 0.08) 100%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(74, 52, 28, 0.12) 0 2px,
+        transparent 2px 14px
+      ),
+      linear-gradient(90deg, #c9a068 0%, var(--fretboard-bg) 45%, #a67f45 100%);
+  }
+
+  .fret-column {
+    /* DOM order is G,D,A,E — reverse so E (thick) is left, G (thin) right */
+    flex-direction: row-reverse;
+    flex: 1 1 0;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+  }
+
+  .fret-column--nut {
+    flex: 0 0 clamp(40px, 8vh, 56px);
+    border-right: none;
+    border-bottom: 8px solid #c8c8c8;
+    box-shadow:
+      inset 0 -6px 10px rgba(255, 255, 255, 0.12),
+      0 2px 4px var(--body-bg-dark);
+  }
+
+  .fret-column--fretted {
+    border-right: none;
+    border-bottom: 5px solid #8a8a8a;
+    box-shadow:
+      0 3px 5px rgba(0, 0, 0, 0.12),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.12);
+    min-width: 0;
+  }
+
+  .fret-position {
+    min-width: 0;
+    min-height: 44px;
+  }
+
+  /* Strings run vertically (along frets); thickness via width */
+  .fretboard-string {
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: auto;
+    height: auto;
+  }
+
+  .fretboard-string--s1 {
+    top: 0;
+    left: var(--str-left-1);
+    width: var(--str-w-1);
+  }
+
+  .fretboard-string--s2 {
+    top: 0;
+    left: var(--str-left-2);
+    width: var(--str-w-2);
+  }
+
+  .fretboard-string--s3 {
+    top: 0;
+    left: var(--str-left-3);
+    width: var(--str-w-3);
+  }
+
+  .fretboard-string--s4 {
+    top: 0;
+    left: var(--str-left-4);
+    width: var(--str-w-4);
+  }
+
+  /* Inlays: center of fret row; octave markers along string axis (X) */
+  .fret-column__inlay--octave-up {
+    top: 50%;
+    left: 25%;
+  }
+
+  .fret-column__inlay--octave-down {
+    top: 50%;
+    left: 75%;
+  }
+}
+
+/* Landscape phones: keep horizontal neck; ensure fretted columns stay tappable */
+@media (max-width: 896px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  .fretboard__container {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .fretboard--neck {
+    --fb-h: clamp(160px, 42vh, 240px);
+    height: var(--fb-h);
+    min-height: var(--fb-h);
+    min-width: 680px;
+    flex-direction: row;
+  }
+
+  .fret-column {
+    flex-direction: column;
+  }
+
   .fret-column--fretted {
     min-width: 44px;
   }

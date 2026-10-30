@@ -6,12 +6,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* Option C: dashboard stays top; fretboard container scrolls inside remaining height */
 .app-content {
-  /* Rotation removed - will implement proper flexbox layout later */
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch;
 }
 
 .start-button {
@@ -104,6 +115,28 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+/* Portrait: reclaim space between dashboard and neck (reduce vertical scroll) */
+@media (max-width: 896px) and (orientation: portrait) {
+  .app {
+    padding: 0.35rem;
+  }
+
+  .info-panel {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .feedback {
+    margin-top: 4px;
+    min-height: 0;
+  }
+
+  .feedback:empty {
+    display: none;
+  }
 }
 
 @media (max-width: 896px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
