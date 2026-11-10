@@ -17,7 +17,7 @@ function App() {
     }).toDestination(),
   );
 
-  const { startNewGame, gameState, checkAnswer, generateNewNote } =
+  const { startNewGame, gameState, progress, checkAnswer, generateNewNote } =
     useGameState();
   const [feedback, setFeedback] = useState<{
     message: string;
@@ -86,6 +86,7 @@ function App() {
                 </p>
               </div>
             )}
+            <p className="best-score">Best: {progress.highScore}</p>
             <button onClick={handleNewGame} className="start-button">
               Start Practice
             </button>
@@ -93,7 +94,7 @@ function App() {
         ) : (
           <div className="app-content">
             <div className="info-panel">
-              <ScoreDisplay gameState={gameState} />
+              <ScoreDisplay gameState={gameState} progress={progress} />
 
               <button onClick={handleToggleNotes}>
                 {areHiddenNotes ? "Show Notes" : "Hide Notes"}

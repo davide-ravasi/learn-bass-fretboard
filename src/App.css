@@ -25,6 +25,11 @@
   align-items: stretch;
 }
 
+.best-score {
+  margin: 0.5rem 0 0;
+  font-weight: 700;
+}
+
 .start-button {
   background-color: #4caf50;
   color: white;
