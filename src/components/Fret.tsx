@@ -23,13 +23,15 @@ export const Fret = ({
   isClickedNote: (note: Note, clickedNote: Note | undefined) => boolean;
   areHiddenNotes: boolean;
 }) => {
+  const isMistake =
+    isClickedNote(note, clickedNote) && !isCurrentNote(note, gameState);
+  const showName = !areHiddenNotes || Boolean(isMistake);
   const fretboardClasses = clsx("fret-position", {
     clicked: isClickedNote(note, clickedNote),
     highlighted:
       gameState.currentNote && gameState.currentNote.string === note.string,
     correct: isCurrentNote(note, gameState) && isClickedNote(note, clickedNote),
-    incorrect:
-      isClickedNote(note, clickedNote) && !isCurrentNote(note, gameState),
+    incorrect: isMistake,
     "open-string": isOpenString(note.fret),
   });
 
@@ -40,11 +42,13 @@ export const Fret = ({
       data-string={note.string}
       data-fret={note.fret}
       aria-label={
-        areHiddenNotes ? `String ${note.string}, fret ${note.fret}` : undefined
+        areHiddenNotes
+          ? `${showName ? `${note.name}, ` : ""}String ${note.string}, fret ${note.fret}`
+          : undefined
       }
       onClick={() => handleNoteClick(note)}
     >
-      <span className="note-label">{!areHiddenNotes && note.name}</span>
+      <span className="note-label">{showName ? note.name : ""}</span>
     </button>
   );
 };
