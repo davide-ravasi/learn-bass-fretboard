@@ -45,12 +45,6 @@
   background-color: #45a049;
 }
 
-.target-note {
-  font-size: 24px;
-  font-weight: bold;
-  color: #4caf50;
-}
-
 .install-prompt {
   position: fixed;
   top: 20px;
@@ -99,27 +93,25 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 896px) {
   .install-prompt {
-    top: 10px;
-    right: 10px;
-    left: 10px;
-    text-align: center;
+    top: auto;
+    bottom: 12px;
+    right: 12px;
+    left: auto;
+    max-width: min(220px, calc(100% - 24px));
   }
-}
-
-.feedback {
-  margin-top: 15px;
-  min-height: 30px;
 }
 
 .info-panel {
   display: flex;
-  gap: 10px;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  margin-bottom: 15px;
+  width: 100%;
+  max-width: min(960px, 100%);
+  margin: 0 auto 8px;
+  box-sizing: border-box;
   flex-shrink: 0;
 }
 
@@ -130,17 +122,7 @@
   }
 
   .info-panel {
-    gap: 6px;
     margin-bottom: 6px;
-  }
-
-  .feedback {
-    margin-top: 4px;
-    min-height: 0;
-  }
-
-  .feedback:empty {
-    display: none;
   }
 }
 
@@ -154,20 +136,4 @@
   font-size: 16px;
   font-weight: bold;
   color: #4caf50;
-}
-
-.info-panel .target-note {
-  font-size: 16px;
-  font-weight: bold;
-  color: #4caf50;
-}
-
-.info-panel button {
-  margin-left: 10px;
-}
-
-.info-panel .current-note {
-  align-self: stretch;
-  margin-top: 5px;
-  padding: 4px;
 }

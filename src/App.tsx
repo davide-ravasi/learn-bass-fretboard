@@ -4,7 +4,7 @@ import { ScoreDisplay } from "./components/ScoreDisplay";
 import { InstallPrompt } from "./components/InstallPrompt";
 import type { Note } from "./types";
 import { useGameState } from "./hooks/useGameState";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 
 function App() {
@@ -19,10 +19,8 @@ function App() {
 
   const { startNewGame, gameState, progress, checkAnswer, generateNewNote } =
     useGameState();
-  const [feedback, setFeedback] = useState<{
-    message: string;
-    type: "correct" | "incorrect" | null;
-  }>({ message: "", type: null });
+  const [result, setResult] = useState<"correct" | "incorrect" | null>(null);
+  const answerLock = useRef(false);
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
@@ -38,31 +36,37 @@ function App() {
   };
 
   const handleNoteClick = async (note: Note) => {
-    if (!gameState.isPlaying) return;
+    if (
+      !gameState.isPlaying ||
+      result ||
+      answerLock.current ||
+      !gameState.currentNote
+    ) {
+      return;
+    }
+
+    answerLock.current = true;
+    setClickedNote(note);
+    setResult(checkAnswer(note) ? "correct" : "incorrect");
 
     try {
       await playNote(note);
     } catch (error) {
       console.error("Error playing note:", error);
     }
+  };
 
-    setClickedNote(note);
-    const isCorrect = checkAnswer(note);
-
-    if (isCorrect) {
-      setFeedback({ message: "Correct! 🎉", type: "correct" });
-    } else {
-      setFeedback({ message: "Try again! ❌", type: "incorrect" });
-    }
-
-    setTimeout(() => {
-      generateNewNote();
-      setClickedNote(undefined);
-      setFeedback({ message: "", type: null });
-    }, 1500);
+  const handleContinue = () => {
+    answerLock.current = false;
+    generateNewNote();
+    setClickedNote(undefined);
+    setResult(null);
   };
 
   const handleNewGame = () => {
+    answerLock.current = false;
+    setClickedNote(undefined);
+    setResult(null);
     startNewGame();
     generateNewNote();
   };
@@ -94,16 +98,15 @@ function App() {
         ) : (
           <div className="app-content">
             <div className="info-panel">
-              <ScoreDisplay gameState={gameState} progress={progress} />
-
-              <button onClick={handleToggleNotes}>
-                {areHiddenNotes ? "Show Notes" : "Hide Notes"}
-              </button>
-              {feedback.message ? (
-                <div className={`feedback ${feedback.type ?? ""}`}>
-                  {feedback.message}
-                </div>
-              ) : null}
+              <ScoreDisplay
+                gameState={gameState}
+                progress={progress}
+                clickedNote={clickedNote}
+                result={result}
+                areHiddenNotes={areHiddenNotes}
+                onToggleNotes={handleToggleNotes}
+                onContinue={handleContinue}
+              />
             </div>
             <Fretboard
               handleNoteClick={handleNoteClick}
