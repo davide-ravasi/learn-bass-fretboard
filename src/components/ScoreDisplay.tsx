@@ -1,9 +1,14 @@
-import { clsx } from "clsx";
 import { statFor, type Progress } from "../progress/model";
 import type { GameState, Note } from "../types";
 import "./ScoreDisplay.css";
 
 type AnswerResult = "correct" | "incorrect";
+
+type Cell = {
+  label: string;
+  value: string;
+  emphasis?: boolean;
+};
 
 const EyeIcon = ({ hidden }: { hidden: boolean }) => (
   <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
@@ -32,6 +37,40 @@ const EyeIcon = ({ hidden }: { hidden: boolean }) => (
   </svg>
 );
 
+const cellsFor = (
+  result: AnswerResult | null,
+  asked: Note | null,
+  clickedNote: Note | undefined,
+  score: number,
+  highScore: number,
+  hereCorrect: number,
+  hereAttempts: number,
+): Cell[] => {
+  const here = `${hereCorrect}/${hereAttempts}`;
+
+  if (result === "incorrect" && asked && clickedNote) {
+    return [
+      { label: "Suonato", value: clickedNote.name },
+      { label: "Cercavi", value: asked.name, emphasis: true },
+      { label: "Su questa", value: here },
+    ];
+  }
+
+  if (result === "correct" && asked) {
+    return [
+      { label: "Esito", value: "Giusto", emphasis: true },
+      { label: "Nota", value: asked.name },
+      { label: "Su questa", value: here },
+    ];
+  }
+
+  return [
+    { label: "Cerca", value: asked?.name ?? "", emphasis: true },
+    { label: "Punti", value: String(score) },
+    { label: "Record", value: String(highScore) },
+  ];
+};
+
 export const ScoreDisplay = ({
   gameState,
   progress,
@@ -51,54 +90,35 @@ export const ScoreDisplay = ({
 }) => {
   const asked = gameState.currentNote;
   const here = statFor(progress, asked);
-  const resultText =
-    result === "correct" && asked
-      ? `Giusto · ${asked.name} ${here.correct}/${here.attempts}`
-      : result === "incorrect" && asked && clickedNote
-        ? `${clickedNote.name} · cercavi ${asked.name} · ${here.correct}/${here.attempts}`
-        : null;
+  const cells = cellsFor(
+    result,
+    asked,
+    clickedNote,
+    gameState.score,
+    progress.highScore,
+    here.correct,
+    here.attempts,
+  );
 
   return (
     <div className="practice-strip">
-      {resultText ? (
-        <p
-          className={clsx(
-            "practice-strip__result",
-            `practice-strip__result--${result}`,
-          )}
-          role="status"
-        >
-          {resultText}
-        </p>
-      ) : (
-        <p className="practice-strip__question">
-          <span
-            className="practice-strip__find"
-            aria-label={asked ? `Find ${asked.name}` : undefined}
-          >
-            {asked?.name}
-          </span>
-          <span className="practice-strip__dot" aria-hidden="true">
-            ·
-          </span>
-          <span aria-label={`Score ${gameState.score}`}>{gameState.score}</span>
-          <span className="practice-strip__dot" aria-hidden="true">
-            ·
-          </span>
-          <span aria-label={`Best ${progress.highScore}`}>
-            ★{progress.highScore}
-          </span>
-          <span className="practice-strip__dot" aria-hidden="true">
-            ·
-          </span>
-          <span
-            aria-label={`${gameState.correctAttempts} correct out of ${gameState.totalAttempts}`}
-          >
-            {gameState.correctAttempts}/{gameState.totalAttempts}
-          </span>
-        </p>
-      )}
-      {resultText ? (
+      <div className="practice-strip__cells" role="status">
+        {cells.map((cell) => (
+          <div className="practice-strip__cell" key={cell.label}>
+            <span className="practice-strip__label">{cell.label}</span>
+            <span
+              className={
+                cell.emphasis
+                  ? "practice-strip__value practice-strip__value--emphasis"
+                  : "practice-strip__value"
+              }
+            >
+              {cell.value}
+            </span>
+          </div>
+        ))}
+      </div>
+      {result ? (
         <button
           type="button"
           className="practice-strip__continue"
