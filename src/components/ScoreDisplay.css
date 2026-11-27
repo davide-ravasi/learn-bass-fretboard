@@ -1,44 +1,88 @@
-.score-display {
-  background-color: #f9f9f9;
-  padding: 10px;
+.practice-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  padding: 0 6px 0 10px;
+  box-sizing: border-box;
+  background: #f9f9f9;
   border-radius: 8px;
-  margin: 15px 0;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
+  overflow: hidden;
+  text-align: left;
+}
+
+.practice-strip__cells {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.practice-strip__cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.practice-strip__label {
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #757575;
+  white-space: nowrap;
+}
+
+.practice-strip__value {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.practice-strip__value--emphasis {
+  color: #2e7d32;
+}
+
+.practice-strip__continue,
+.practice-strip__notes {
+  flex: 0 0 auto;
+  margin: 0;
+  height: 28px;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.practice-strip__continue {
+  padding: 0 10px;
+  border: none;
+  background: #4caf50;
+  color: #fff;
+}
+
+.practice-strip__notes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  padding: 0;
+  border: 1px solid #c8c8c8;
+  background: #fff;
   color: #333;
 }
 
-@media (max-width: 896px) and (orientation: portrait) {
-  .score-display {
-    padding: 6px 8px;
-    margin: 0;
-  }
-}
-
-.stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 2px 0;
-  gap: 8px 12px;
-}
-
-.stats p {
-  margin: 0;
-  font-weight: bold;
-  font-size: clamp(0.75rem, 2.8vw, 1rem);
-}
-
-.current-note {
-  margin-top: 15px;
-  padding: 15px;
-  background-color: #e8f5e8;
-  border-radius: 6px;
-}
-
-.target-note {
-  font-size: 24px;
-  font-weight: bold;
-  color: #4caf50;
-  margin: 5px 0;
+.practice-strip__notes[aria-pressed="true"] {
+  background: #e8f5e8;
+  border-color: #4caf50;
+  color: #2e7d32;
 }

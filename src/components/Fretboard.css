@@ -285,7 +285,10 @@
   .fretboard__container {
     overflow-x: hidden;
     overflow-y: auto;
+    width: auto;
     max-width: 100%;
+    margin-left: 16px;
+    margin-right: 16px;
     flex: 1 1 auto;
     min-height: 0;
     max-height: 100%;
